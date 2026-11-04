@@ -22,7 +22,14 @@
     'assets/images/questions/science/': ['battery', 'braille', 'flight', 'mouse', 'steam', 'tv', 'vaccine'],
     'assets/images/questions/details/': ['camera-lens', 'crystal-geode', 'leaf-microscope', 'match-head', 'pollen-microscope'],
     'assets/images/questions/history/': ['samarra'],
-    'assets/images/categories/': ['player_career_path', 'who_is_the_player', 'combat_and_team_sports', 'fifa_world_cup', 'uefa_champions_league', 'kw_landmarks', 'umayyad_era']
+    'assets/images/questions/food/': ['ayran', 'baklava', 'basbousa', 'black-lime', 'cardamom', 'cocoa-bean', 'coffee-bean', 'couscous', 'croissant', 'dallah-coffee-pot', 'falafel', 'flatbread', 'guacamole', 'halva', 'harira', 'kanafeh', 'kibbeh', 'kimchi', 'koshary', 'luqaimat', 'macaron', 'mandi-food', 'masgouf', 'musakhan', 'paella', 'pizza-margherita', 'saffron', 'samosa', 'sushi', 'tabbouleh', 'tajine', 'tharid', 'tiramisu', 'truffle', 'umm-ali', 'vanilla'],
+    'assets/images/questions/ancient-civs/': ['02', '03', '04', '05', '07', '08', '09', '10', '14', '15', '17', '18', '21', '23', '24', '27', '30', '37', '38', '39'],
+    'assets/images/questions/desert/': ['camel'],
+    'assets/images/questions/sports-extra/': ['badminton', 'basketball', 'boxing', 'chess', 'fencing', 'handball', 'squash', 'track', 'volleyball', 'waterpolo'],
+    'assets/images/questions/kuwait/': ['bubiyan_iss', 'causeway', 'failaka_sat', 'grand_mosque', 'hamra', 'liberation', 'mubarakiya', 'national_museum', 'qaruh', 'qurain', 'sadu', 'seif', 'shaheed'],
+    'assets/images/questions/landmarks-extra/': ['abusimbel', 'alhambra', 'angkor', 'atomium', 'bigben', 'borobudur', 'brandenburg', 'burjkhalifa', 'cairocitadel', 'colosseum', 'empirestate', 'forbidden', 'giza', 'greatpyramid', 'greatwall', 'hagiasophia', 'hegra', 'kinderdijk', 'kremlin', 'liberty', 'louvre', 'moai', 'museumfuture', 'neuschwanstein', 'pantheon', 'pontdugard', 'potala', 'registan', 'rushmore', 'sagrada', 'sphinx', 'stonehenge', 'towerbridge', 'versailles'],
+    'assets/images/questions/science-extra/': ['aircon', 'balloon', 'blood', 'bulb', 'chip', 'dynamite', 'laser', 'microwave', 'paper', 'polio', 'printing', 'radio', 'stethoscope', 'telegraph', 'telephone', 'telescope', 'transistor'],
+    'assets/images/categories/': ['ahl_albarr', 'player_career_path', 'who_is_the_player', 'combat_and_team_sports', 'fifa_world_cup', 'uefa_champions_league', 'kw_landmarks', 'umayyad_era']
   };
   function isRealQuestionPhoto(question) {
     if (!question) return false;
