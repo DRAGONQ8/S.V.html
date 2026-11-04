@@ -1437,7 +1437,7 @@
       var lineup = AppState.proposedSessions[themeKey];
 
       var card = document.createElement('div');
-      card.className = 'session-card';
+      card.className = 'session-card session-preset-card';
       card.setAttribute('data-preset', themeKey);
 
       var head = document.createElement('div');
