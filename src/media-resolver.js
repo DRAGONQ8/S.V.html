@@ -29,6 +29,12 @@
     'assets/images/questions/kuwait/': ['bubiyan_iss', 'causeway', 'failaka_sat', 'grand_mosque', 'hamra', 'liberation', 'mubarakiya', 'national_museum', 'qaruh', 'qurain', 'sadu', 'seif', 'shaheed'],
     'assets/images/questions/landmarks-extra/': ['abusimbel', 'alhambra', 'angkor', 'atomium', 'bigben', 'borobudur', 'brandenburg', 'burjkhalifa', 'cairocitadel', 'colosseum', 'empirestate', 'forbidden', 'giza', 'greatpyramid', 'greatwall', 'hagiasophia', 'hegra', 'kinderdijk', 'kremlin', 'liberty', 'louvre', 'moai', 'museumfuture', 'neuschwanstein', 'pantheon', 'pontdugard', 'potala', 'registan', 'rushmore', 'sagrada', 'sphinx', 'stonehenge', 'towerbridge', 'versailles'],
     'assets/images/questions/science-extra/': ['aircon', 'balloon', 'blood', 'bulb', 'chip', 'dynamite', 'laser', 'microwave', 'paper', 'polio', 'printing', 'radio', 'stethoscope', 'telegraph', 'telephone', 'telescope', 'transistor'],
+    'assets/images/questions/arab-capitals/': ['algiers', 'amman', 'baghdad', 'beirut', 'cairo', 'damascus', 'djibouti', 'jerusalem', 'khartoum', 'manama', 'mogadishu', 'moroni', 'muscat', 'rabat', 'sanaa', 'tripoli', 'tunis'],
+    'assets/images/questions/gulf-cities/': ['abha', 'jais', 'jeddah', 'kingdom', 'kuwaittowers', 'salalah'],
+    'assets/images/questions/kuwait-heritage/': ['harbour', 'heritage-dhow', 'mubarakiya', 'oil-export'],
+    'assets/images/questions/general-knowledge/': ['rainbow'],
+    'assets/images/questions/medical-history/': ['barnard', 'fleming', 'hpylori', 'koch', 'pasteur'],
+    'assets/images/questions/stadiums/': ['01', '02', '03', '04', '05', '06', '07', '08', '11', '12', '13', '14', '15', '17', '19', '20', '21', '22', '23', '24', '25', '26', '28', '29', '30', '32', '33', '34', '35', '36', '37', '38', '39'],
     'assets/images/categories/': ['ahl_albarr', 'player_career_path', 'who_is_the_player', 'combat_and_team_sports', 'fifa_world_cup', 'uefa_champions_league', 'kw_landmarks', 'umayyad_era']
   };
   function isRealQuestionPhoto(question) {
