@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="amoled">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#090d16">
+  <title>سين جيم — النسخة الاحترافية الشاملة (314 فئة / 11110 سؤالاً)</title>
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+
+  <div class="app-shell">
+    <!-- Top Global Bar -->
+    <header class="top-navbar" id="top-navbar" role="banner">
+      <div class="brand-cluster" id="nav-brand-home" tabindex="0" role="button" aria-label="العودة إلى الصفحة الرئيسية">
+        <div class="brand-emblem">س ج</div>
+        <div class="brand-titles">
+          <span class="brand-name">سين جيم — تحدي المعرفة</span>
+          <span class="brand-sub">المسابقة الثقافية العربية الكبرى • 314 فئة • 11110 سؤالاً</span>
+        </div>
+      </div>
+
+      <nav class="nav-actions" aria-label="أدوات التحكم السريعة">
+        <div class="ui-scale-cluster nav-collapse-xs nav-collapse-md" role="group" aria-label="حجم الواجهة">
+          <button type="button" class="icon-btn" id="btn-ui-scale-down" title="تصغير حجم الواجهة" aria-label="تصغير حجم الواجهة">أ-</button>
+          <span class="ui-scale-val" id="nav-ui-scale-label">100%</span>
+          <button type="button" class="icon-btn" id="btn-ui-scale-up" title="تكبير حجم الواجهة" aria-label="تكبير حجم الواجهة">أ+</button>
+        </div>
+        <button type="button" class="icon-btn nav-collapse-xs nav-collapse-sm" id="btn-toggle-big-screen" title="وضع العرض الكبير للجمهور والشاشات" aria-label="وضع العرض الكبير">
+          <span>🖥️</span><span class="btn-lbl">عرض كبير</span>
+        </button>
+        <button type="button" class="icon-btn nav-collapse-xs nav-collapse-sm" id="btn-open-hall-of-fame" title="لوحة الشرف والإحصائيات" aria-label="لوحة الشرف والإحصائيات">
+          <span>🏆</span><span class="btn-lbl">لوحة الشرف</span>
+        </button>
+        <button type="button" class="icon-btn nav-collapse-xs nav-collapse-md" id="btn-open-custom-packs" title="الحزم المخصصة" aria-label="الحزم المخصصة">
+          <span>➕</span><span class="btn-lbl">حزم مخصصة</span>
+        </button>
+        <button type="button" class="icon-btn nav-collapse-xs nav-collapse-md" id="btn-open-shortcuts" title="اختصارات لوحة المفاتيح" aria-label="اختصارات لوحة المفاتيح">
+          <span>⌨️</span><span class="btn-lbl">الاختصارات</span>
+        </button>
+        <button type="button" class="icon-btn nav-collapse-xs nav-collapse-md" id="btn-open-howto" title="طريقة اللعب" aria-label="طريقة اللعب">
+          <span>📖</span><span class="btn-lbl">طريقة اللعب</span>
+        </button>
+        <button type="button" class="icon-btn nav-collapse-xs" id="btn-toggle-theme" title="تبديل المظهر" aria-label="تبديل المظهر">
+          <span>☀️</span><span class="btn-lbl">المظهر</span>
+        </button>
+        <button type="button" class="icon-btn nav-keep-xs" id="btn-open-settings" title="الإعدادات" aria-label="الإعدادات">
+          <span>⚙️</span><span class="btn-lbl">الإعدادات</span>
+        </button>
+        <button type="button" class="icon-btn gold-outline nav-keep-xs" id="btn-toggle-fullscreen" title="ملء الشاشة" aria-label="ملء الشاشة">
+          <span>⛶</span><span class="btn-lbl">ملء الشاشة</span>
+        </button>
+        <button type="button" class="icon-btn nav-more-btn nav-keep-xs" id="btn-nav-more" title="المزيد من الأدوات والخيارات" aria-label="المزيد من الأدوات">
+          <span>⋯</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Main Screens Container -->
+    <main class="screens-wrapper" role="main">
+
+      <!-- ================================================================
+           SCREEN 1: HOME SCREEN
+           ================================================================ -->
+      <section class="screen active" id="screen-home" aria-labelledby="hero-main-title">
+        <div class="hero-card">
+          <div class="hero-art-banner" id="hero-art-banner" style="width:min(100%, 500px); aspect-ratio:16/9; max-height:130px; border-radius:14px; overflow:hidden; border:1px solid var(--border-gold); margin-bottom:0.2rem; background:#050811; box-shadow:0 8px 24px rgba(0,0,0,0.6);">
+            <img id="hero-banner-img" src="" alt="شعار سين جيم تحدي المعرفة" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <svg class="hero-logo-svg" viewBox="0 0 140 140" role="img" aria-label="شعار سين جيم تحدي المعرفة">
+            <defs>
+              <linearGradient id="logoGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fde047"/>
+                <stop offset="50%" stop-color="#fbbf24"/>
+                <stop offset="100%" stop-color="#d97706"/>
+              </linearGradient>
+              <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1e1b4b"/>
+                <stop offset="100%" stop-color="#090d16"/>
+              </linearGradient>
+            </defs>
+            <polygon points="70,6 128,38 128,102 70,134 12,102 12,38" fill="url(#logoBg)" stroke="url(#logoGold)" stroke-width="5"/>
+            <circle cx="70" cy="70" r="46" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 4"/>
+            <text x="70" y="84" text-anchor="middle" fill="url(#logoGold)" font-size="42" font-weight="900" font-family="sans-serif">س ج</text>
+          </svg>
+
+          <span class="hero-badge">✨ الإصدار الاحترافي المُرقّى • إجابة شفهية مفتوحة + وسائل مساعدة • يعمل دون اتصال</span>
+          <h1 class="hero-title" id="hero-main-title">سين جيم — تحدي المعرفة</h1>
+          <p class="hero-subtitle">
+            خض أقوى المنافسات الثقافية العربية الجماعية بين فريقين! يختار كل فريق ٣ فئات (من أصل 314 فئة مصورة وتفاعلية تضم 11110 سؤالاً مُدقّقاً) لبناء لوحة من ٣٦ سؤالاً، مع إجابة شفهية مفتوحة، مؤقت ٦٠ ثانية، تمرير الفرصة ١٠ ثوانٍ، و٤ وسائل مساعدة استراتيجية (إظهار الخيارات، جوابان، اتصال بصديق، والحفرة).
+          </p>
+
+          <div class="hero-cta-group">
+            <button type="button" class="btn-primary" id="btn-home-start">
+              <span>🚀 ابدأ المسابقة الجماعية (فريقان)</span>
+            </button>
+            <button type="button" class="btn-secondary" id="btn-home-lightning" style="border-color:var(--border-gold); color:var(--accent-gold);">
+              <span>⚡ تحدي البرق الفردي (60 ث)</span>
+            </button>
+            <button type="button" class="btn-secondary" id="btn-import-match-trigger">
+              <span>📂 استيراد مباراة محفوظة</span>
+            </button>
+            <input type="file" id="input-import-match-file" accept=".json,application/json" style="display:none;">
+          </div>
+
+          <!-- Resume Match Banner -->
+          <div class="resume-match-banner" id="resume-match-banner" style="display:none;">
+            <div class="resume-info">
+              <div class="resume-title">⚡ لديك مباراة جارية محفوظة تلقائياً</div>
+              <div class="resume-meta" id="resume-match-meta"></div>
+            </div>
+            <button type="button" class="btn-primary" id="btn-resume-match">
+              <span>▶️ استئناف المباراة</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Database Statistics Strip -->
+        <div class="stats-strip" aria-label="إحصائيات قاعدة البيانات">
+          <div class="stat-card">
+            <div class="stat-val" id="stat-total-categories">314</div>
+            <div class="stat-lbl">فئة معرفية مصورة</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="stat-total-questions">11110</div>
+            <div class="stat-lbl">سؤال عربي مُدقّق</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="stat-unseen-questions">11110</div>
+            <div class="stat-lbl">سؤال جديد غير مكشوف</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="stat-matches-played">0</div>
+            <div class="stat-lbl">مباريات مكتملة على الجهاز</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           SCREEN 2: CATEGORY SELECTION SCREEN (120 Categories, Explicit Team Slots)
+           ================================================================ -->
+      <section class="screen" id="screen-categories" aria-labelledby="cats-screen-title">
+        <div class="section-header-bar">
+          <div class="section-header-titles">
+            <h2 id="cats-screen-title">اختيار فئات المسابقة (٣ فئات لكل فريق = ٦ فئات)</h2>
+            <p>تضم الموسوعة <span id="cats-header-total-cats">314</span> فئة و<span id="cats-header-total-qs">11110</span> سؤالاً موثقاً؛ اضغط على البطاقة لاختيارها أو إلغاء اختيارها، أو اضغط (ℹ️) للتفاصيل.</p>
+          </div>
+          <div class="tray-actions">
+            <button type="button" class="btn-secondary" id="btn-random-categories">🎲 اختيار ٦ فئات عشوائياً</button>
+            <button type="button" class="btn-secondary" id="btn-undo-cat-selection" disabled>↩️ تراجع</button>
+            <button type="button" class="btn-danger" id="btn-clear-categories">مسح الاختيار</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Randomized Session Suggestions -->
+        <div class="sessions-panel" id="sessions-suggestions-panel" aria-label="جلسات مقترحة متجددة">
+          <div class="sessions-panel-header">
+            <div>
+              <div class="sessions-panel-title">✨ جلسات مقترحة متجددة (٦ فئات متنوعة بضغطة واحدة)</div>
+              <div class="sessions-panel-sub">تتغير الفئات عشوائياً في كل مرة مع مراعاة الأسئلة الجديدة وحفظ الفئات المثبتة (🔒)</div>
+            </div>
+            <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+              <button type="button" class="btn-secondary" id="btn-refresh-sessions" style="min-height:38px; padding:0.35rem 0.8rem; font-size:0.82rem;">🔄 تشكيلات جديدة</button>
+            </div>
+          </div>
+          <div class="sessions-cards-grid" id="sessions-cards-grid"></div>
+        </div>
+
+        <!-- Sticky Selected 6 Categories Tray -->
+        <div class="selected-tray" id="selected-tray" aria-live="polite">
+          <div class="tray-counter-group" style="gap:0.45rem; flex-wrap:wrap;">
+            <span class="tray-counter-badge" id="selected-cats-count">0 / 6 فئات مختارة</span>
+            <div class="team-picker-switcher" role="group" aria-label="تحديد الفريق الذي يختار الآن">
+              <button type="button" class="team-picker-btn active-team1" id="btn-picker-team1">🛡️ الفريق ١ (0/3)</button>
+              <button type="button" class="team-picker-btn" id="btn-picker-team2">⚔️ الفريق ٢ (0/3)</button>
+            </div>
+            <span class="tray-counter-badge" id="selected-cats-turn-hint" style="background:rgba(14,165,233,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.35); font-size:0.82rem;">يختار الآن: الفريق الأول</span>
+          </div>
+          <div class="tray-pills" id="selected-cats-pills"></div>
+          <div class="tray-actions">
+            <button type="button" class="icon-btn" id="btn-clear-team1" title="مسح فئات الفريق الأول فقط" style="font-size:0.76rem; padding:0.3rem 0.55rem;">مسح ف١</button>
+            <button type="button" class="icon-btn" id="btn-clear-team2" title="مسح فئات الفريق الثاني فقط" style="font-size:0.76rem; padding:0.3rem 0.55rem;">مسح ف٢</button>
+            <button type="button" class="btn-primary" id="btn-proceed-setup" disabled>
+              <span>التالي: إعداد الفريقين ⬅️</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Search, Status Filters, Sort & Group Filter Toolbar -->
+        <div class="filter-toolbar">
+          <div class="search-box" style="display:flex; gap:0.4rem; align-items:center;">
+            <input type="search" id="input-search-categories" class="search-input" placeholder="🔍 ابحث في 314 فئة بالاسم أو الوصف (مثل: درب الزلق، خالتي قماشة، باب الحارة، بريكنغ باد، الكويت)..." aria-label="ابحث عن فئة">
+            <button type="button" class="icon-btn" id="btn-clear-search" style="display:none; min-height:46px;" aria-label="مسح البحث">✕</button>
+            <button type="button" class="icon-btn" id="btn-toggle-filter-drawer" style="min-height:44px; white-space:nowrap;" aria-expanded="true" aria-controls="filter-secondary-row">⚙️ تصفية</button>
+          </div>
+
+          <div class="filter-secondary-row" id="filter-secondary-row">
+            <div class="status-filter-pills" id="category-status-filters" role="group" aria-label="تصفية حسب حالة الفئة">
+              <button type="button" class="status-pill-btn active" data-status-filter="all">الكل (314)</button>
+              <button type="button" class="status-pill-btn" data-status-filter="favorites">⭐ المفضلة</button>
+              <button type="button" class="status-pill-btn" data-status-filter="selected">✅ المختارة</button>
+              <button type="button" class="status-pill-btn" data-status-filter="visual">📸 تحتوي صوراً</button>
+              <button type="button" class="status-pill-btn" data-status-filter="visual_rich">🖼️ بصرية مكثفة (+50%)</button>
+              <button type="button" class="status-pill-btn" data-status-filter="new_cats">✨ فئات جديدة (98)</button>
+              <button type="button" class="status-pill-btn" data-status-filter="unseen">🆕 متاح بالجديد</button>
+            </div>
+            <div class="sort-and-count-box">
+              <label for="select-sort-categories" style="font-size:0.78rem; color:var(--text-secondary); font-weight:700;">ترتيب:</label>
+              <select id="select-sort-categories" class="compact-select" aria-label="ترتيب الفئات">
+                <option value="default">حسب المجموعات (الافتراضي)</option>
+                <option value="alpha">الأبجدي (أ - ي)</option>
+                <option value="unseen_desc">الأكثر أسئلة جديدة</option>
+                <option value="images_desc">الأكثر صوراً توضيحية</option>
+              </select>
+              <span class="result-count-badge" id="categories-result-count">عرض 314 من 314 فئة</span>
+            </div>
+          </div>
+
+          <div class="group-tabs" id="category-group-tabs" role="tablist" aria-label="تصفية حسب المجموعة"></div>
+          <div class="tv-subfilters-bar" id="tv-subgroup-tabs" role="group" aria-label="تصفية المسلسلات حسب المنطقة أو النوع">
+            <span style="font-size:0.78rem; font-weight:800; color:#e11d48;">📺 تصنيف المسلسلات:</span>
+            <button type="button" class="tv-subfilter-btn active" data-tv-sub="all">الكل</button>
+            <button type="button" class="tv-subfilter-btn" data-tv-sub="gulf">🇰🇼 كويتية وخليجية</button>
+            <button type="button" class="tv-subfilter-btn" data-tv-sub="arabic">⚔️ عربية وتاريخية</button>
+            <button type="button" class="tv-subfilter-btn" data-tv-sub="international">🌍 أجنبية وعالمية</button>
+            <button type="button" class="tv-subfilter-btn" data-tv-sub="cross">🎬 مشاهد وشخصيات</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Group Art Banner -->
+        <div class="group-banner-strip" id="group-banner-strip" style="display:none; width:100%; height:78px; border-radius:12px; overflow:hidden; border:1px solid var(--border-subtle); position:relative; background:#050811;">
+          <img id="group-banner-img" src="" alt="لوحة المجموعة" style="width:100%; height:100%; object-fit:cover; display:block; opacity:0.85;">
+          <div id="group-banner-caption" style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.75) 100%); display:flex; align-items:center; justify-content:space-between; padding:0 0.9rem; font-weight:900; font-size:0.9rem; color:var(--accent-gold);"></div>
+        </div>
+        <!-- 314 Category Cards Grid -->
+        <div class="categories-grid" id="categories-grid"></div>
+      </section>
+
+      <!-- ================================================================
+           SCREEN 3: TWO-TEAM SETUP SCREEN
+           ================================================================ -->
+      <section class="screen" id="screen-setup" aria-labelledby="setup-screen-title">
+        <div class="section-header-bar">
+          <div class="section-header-titles">
+            <h2 id="setup-screen-title">إعداد الفريقين وضوابط المباراة</h2>
+            <p>أدخل اسمي الفريقين المتنافسين واضبط مؤقت السؤال ووسائل المساعدة ونظام النقاط قبل انطلاق اللوحة.</p>
+          </div>
+          <button type="button" class="btn-secondary" id="btn-back-to-categories">➡️ تعديل الفئات الست</button>
+        </div>
+
+        <div class="setup-grid">
+          <!-- Team 1 Card -->
+          <div class="team-setup-card">
+            <h3>🛡️ بيانات الفريق الأول</h3>
+            <div class="field-group">
+              <label for="input-team1-name">اسم الفريق الأول</label>
+              <input type="text" id="input-team1-name" class="text-input" maxlength="28" value="صقور المعرفة" placeholder="أدخل اسم الفريق الأول">
+            </div>
+            <div class="field-group">
+              <label>اللون المميز للفريق الأول</label>
+              <div class="color-swatches" id="team1-color-swatches"></div>
+            </div>
+            <div class="field-group">
+              <label>وسائل المساعدة للفريق الأول (حتى ٣ وسائل)</label>
+              <div class="lifeline-Loadout-grid" id="team1-lifelines-picker"></div>
+            </div>
+          </div>
+
+          <!-- Team 2 Card -->
+          <div class="team-setup-card">
+            <h3>⚔️ بيانات الفريق الثاني</h3>
+            <div class="field-group">
+              <label for="input-team2-name">اسم الفريق الثاني</label>
+              <input type="text" id="input-team2-name" class="text-input" maxlength="28" value="فرسان التحدي" placeholder="أدخل اسم الفريق الثاني">
+            </div>
+            <div class="field-group">
+              <label>اللون المميز للفريق الثاني</label>
+              <div class="color-swatches" id="team2-color-swatches"></div>
+            </div>
+            <div class="field-group">
+              <label>وسائل المساعدة للفريق الثاني (حتى ٣ وسائل)</label>
+              <div class="lifeline-Loadout-grid" id="team2-lifelines-picker"></div>
+            </div>
+          </div>
+
+          <!-- Match Rules Card -->
+          <div class="team-setup-card">
+            <h3>⏱️ قوانين الجولة ووسائل المساعدة</h3>
+            <div class="field-group">
+              <label for="select-match-timer">مؤقت التفكير لكل سؤال</label>
+              <select id="select-match-timer" class="select-input">
+                <option value="0">بدون مؤقت (مفتوح)</option>
+                <option value="30">30 ثانية</option>
+                <option value="45">45 ثانية</option>
+                <option value="60" selected>60 ثانية (افتراضي سين جيم)</option>
+                <option value="90">90 ثانية</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="select-lifelines-count">الحد الأقصى لوسائل المساعدة لكل فريق</label>
+              <select id="select-lifelines-count" class="select-input">
+                <option value="3" selected>٣ وسائل مساعدة لكل فريق (افتراضي سين جيم)</option>
+                <option value="2">وسيلتان لكل فريق</option>
+                <option value="1">وسيلة واحدة لكل فريق</option>
+                <option value="0">معطلة بالكامل (بدون وسائل مساعدة)</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="select-board-mode">حجم لوحة المسابقة</label>
+              <select id="select-board-mode" class="select-input">
+                <option value="classic" selected>اللوحة الكلاسيكية (36 سؤالاً — 6×6)</option>
+                <option value="quick">اللوحة السريعة (18 سؤالاً — 6×3)</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="select-allow-steal">تمرير الفرصة للفريق الآخر قبل كشف الإجابة</label>
+              <select id="select-allow-steal" class="select-input">
+                <option value="true" selected>مفعل (مع مؤقت خطف 10 ثوانٍ)</option>
+                <option value="false">معطل</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="select-penalty-mode">عقوبة الإجابة الخاطئة (اختياري للمقدم)</label>
+              <select id="select-penalty-mode" class="select-input">
+                <option value="none" selected>بدون خصم نقاط عند الخطأ</option>
+                <option value="half">خصم نصف قيمة السؤال (50%)</option>
+                <option value="full">خصم كامل قيمة السؤال (100%)</option>
+              </select>
+            </div>
+            <div class="field-group" style="margin-top:0.35rem;">
+              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; font-weight:800; font-size:0.86rem;">
+                <input type="checkbox" id="chk-setup-exclude-spoilers" style="width:18px; height:18px;">
+                <span>🛡️ استبعاد أسئلة حرق النهايات في المسلسلات</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; font-weight:800; font-size:0.86rem; margin-top:0.4rem;">
+                <input type="checkbox" id="chk-setup-golden-cells" checked style="width:18px; height:18px;">
+                <span>⭐ تفعيل «الأسئلة الذهبية المضاعفة (×2)» في اللوحة (سؤالان مخفيان بمضاعفة النقاط)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="match-summary-preview">
+          <h3>📌 ملخص الفئات الست المختارة للمباراة (٣٦ سؤالاً):</h3>
+          <div class="preview-cats-row" id="setup-selected-cats-preview"></div>
+          <div style="margin-top: 1.2rem; display: flex; justify-content: center;">
+            <button type="button" class="btn-primary" id="btn-launch-match">
+              <span>🔥 انطلاق لوحة المسابقة الكبرى (٣٦ سؤالاً)</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           SCREEN 4: MAIN 36-QUESTION GAME BOARD
+           ================================================================ -->
+      <section class="screen" id="screen-board" aria-label="لوحة المسابقة الرئيسية">
+        <!-- Scoreboard HUD (Two Teams Facing Each Other on All Screens) -->
+        <div class="scoreboard-hud">
+          <div class="team-hud-box active-turn" id="hud-team1-box">
+            <div class="team-hud-info">
+              <div class="team-hud-name">
+                <span id="hud-team1-name">الفريق الأول</span>
+                <span class="turn-pill" id="hud-team1-turn">دوره الآن</span>
+              </div>
+              <span class="lifeline-hud-badge" id="hud-team1-lifelines"></span>
+            </div>
+            <div class="team-score-cluster">
+              <div class="team-hud-score" id="hud-team1-score">0</div>
+              <button type="button" class="team-quick-adjust-btn" id="btn-quick-adjust-team1" title="تعديل نقاط الفريق الأول (إضافة أو خصم)" aria-label="تعديل نقاط الفريق الأول">±</button>
+            </div>
+          </div>
+
+          <div class="hud-center-controls">
+            <span class="hud-vs-badge" id="hud-turn-arrow" title="مؤشر الدور الحالي">⚡ ضد</span>
+            <span class="progress-pill" id="board-progress-pill">السؤال 0 من 36</span>
+          </div>
+
+          <div class="team-hud-box" id="hud-team2-box">
+            <div class="team-hud-info">
+              <div class="team-hud-name">
+                <span id="hud-team2-name">الفريق الثاني</span>
+                <span class="turn-pill" id="hud-team2-turn" style="display:none;">دوره الآن</span>
+              </div>
+              <span class="lifeline-hud-badge" id="hud-team2-lifelines"></span>
+            </div>
+            <div class="team-score-cluster">
+              <div class="team-hud-score" id="hud-team2-score">0</div>
+              <button type="button" class="team-quick-adjust-btn" id="btn-quick-adjust-team2" title="تعديل نقاط الفريق الثاني (إضافة أو خصم)" aria-label="تعديل نقاط الفريق الثاني">±</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Armed Pit Banner -->
+        <div class="pit-armed-banner" id="pit-armed-banner" role="status" aria-live="polite">
+          <span id="pit-armed-banner-text">🕳️ تم تفعيل «الحفرة»! السؤال القادم سيخصم نقاطه من الخصم عند الفوز به.</span>
+          <button type="button" class="icon-btn" id="btn-cancel-armed-pit">إلغاء الحفرة ✕</button>
+        </div>
+
+        <!-- Active Open Question Banner -->
+        <div class="active-question-banner" id="active-question-banner" role="region" aria-label="سؤال قيد اللعب حالياً">
+          <div>
+            <strong style="color:var(--accent-gold);">⏳ سؤال مفتوح قيد اللعب:</strong>
+            <span id="active-question-banner-meta" style="margin-right:0.35rem; font-size:0.84rem;"></span>
+          </div>
+          <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+            <button type="button" class="btn-primary" id="btn-banner-resume-question" style="min-height:36px; padding:0.3rem 0.75rem; font-size:0.8rem;">
+              <span>▶️ استكمال</span>
+            </button>
+            <button type="button" class="btn-danger" id="btn-banner-abandon-question" style="min-height:36px; padding:0.3rem 0.75rem; font-size:0.8rem;">
+              <span>🚫 إلغاء السؤال</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Single-Row Compact Board Action Toolbar -->
+        <div class="board-toolbar" role="toolbar" aria-label="أدوات لوحة اللعب">
+          <button type="button" class="icon-btn" id="btn-switch-turn" title="تبديل الدور يدوياً بين الفريقين" aria-label="تبديل الدور">
+            <span>🔄</span><span class="tb-lbl">تبديل الدور</span>
+          </button>
+          <button type="button" class="icon-btn" id="btn-open-score-adjust" title="تعديل النقاط اليدوي" aria-label="تعديل النقاط">
+            <span>⚖️</span><span class="tb-lbl">النقاط</span>
+          </button>
+          <button type="button" class="icon-btn" id="btn-arm-pit" title="تفعيل وسيلة الحفرة قبل فتح السؤال" aria-label="تفعيل الحفرة">
+            <span>🕳️</span><span class="tb-lbl">الحفرة</span>
+          </button>
+          <button type="button" class="icon-btn" id="btn-board-history" title="سجل المباراة وتصحيح احتساب الأسئلة" aria-label="سجل المباراة">
+            <span>📜</span><span class="tb-lbl">السجل</span>
+          </button>
+          <button type="button" class="icon-btn" id="btn-board-undo" title="تراجع عن آخر عملية" aria-label="تراجع" disabled>
+            <span>↩️</span><span class="tb-lbl">تراجع</span>
+          </button>
+          <button type="button" class="icon-btn" id="btn-export-match" title="تصدير المباراة" aria-label="تصدير المباراة">
+            <span>💾</span><span class="tb-lbl">حفظ</span>
+          </button>
+          <button type="button" class="icon-btn" id="btn-board-home" title="العودة إلى الرئيسية مع حفظ التقدم" aria-label="الرئيسية">
+            <span>🏠</span><span class="tb-lbl">الرئيسية</span>
+          </button>
+        </div>
+
+        <!-- Mobile / Tablet Category Switcher Bar -->
+        <div class="board-cat-tabs" id="board-mobile-tabs" role="tablist" aria-label="التنقل السريع بين فئات اللوحة"></div>
+
+        <!-- 6 Categories × 6 Cells Grid -->
+        <div class="trivia-board-grid" id="trivia-board-grid"></div>
+      </section>
+
+      <!-- ================================================================
+           SCREEN 5: GAME COMPLETION & RESULTS SCREEN
+           ================================================================ -->
+      <section class="screen" id="screen-results" aria-labelledby="results-winner-headline">
+        <div class="results-hero">
+          <div style="width:min(100%, 380px); height:76px; margin:0 auto 0.25rem; border-radius:12px; overflow:hidden; border:1px solid var(--border-gold); background:#050811;">
+            <img id="results-banner-img" src="" alt="تتويج الفائز" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <div class="winner-crown">👑</div>
+          <h2 class="winner-headline" id="results-winner-headline">الفائز</h2>
+          <p class="hero-subtitle" id="results-winner-sub"></p>
+
+          <div class="final-scores-Compare">
+            <div class="final-team-card" id="results-team1-card"></div>
+            <div class="final-team-card" id="results-team2-card"></div>
+          </div>
+
+          <div class="results-Analytics-grid" id="results-analytics-grid" aria-label="إحصائيات المباراة التفصيلية"></div>
+          <div id="results-adjustments-summary" style="display:none; margin:0.65rem auto; max-width:560px; padding:0.6rem 0.9rem; border-radius:10px; background:var(--bg-secondary); border:1px solid var(--border-subtle); font-size:0.86rem; color:var(--text-secondary);"></div>
+
+          <div class="hero-cta-group">
+            <button type="button" class="btn-primary" id="btn-download-scoreboard-png" style="background:linear-gradient(135deg,#059669,#10b981);">
+              <span>📸 حفظ بطاقة النتيجة كصورة</span>
+            </button>
+            <button type="button" class="btn-secondary" id="btn-results-open-history">
+              <span>📜 سجل المباراة وتعديلات النقاط</span>
+            </button>
+            <button type="button" class="btn-primary" id="btn-play-again-same">
+              <span>🔄 مباراة جديدة بنفس الفئات (بأسئلة جديدة)</span>
+            </button>
+            <button type="button" class="btn-secondary" id="btn-play-again-new">
+              <span>🗂️ اختيار ٦ فئات جديدة</span>
+            </button>
+            <button type="button" class="btn-secondary" id="btn-results-undo">
+              <span>↩️ التراجع عن حسم السؤال الأخير</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ================================================================
+         MODAL 1: QUESTION PRESENTATION & HOST JUDGING
+         ================================================================ -->
+    <div class="modal-backdrop" id="modal-question" role="dialog" aria-modal="true" aria-labelledby="q-modal-prompt">
+      <div class="modal-panel">
+        <div class="q-modal-header">
+          <div class="q-meta-badges">
+            <span class="q-cat-pill" id="q-modal-cat-pill">الفئة</span>
+            <span class="q-points-pill" id="q-modal-pts-pill">200 نقطة</span>
+            <span class="q-cat-pill" id="q-modal-turn-pill">يجيب الآن</span>
+            <span class="q-status-pill" id="q-modal-status-pill">بانتظار الإجابة الشفهية</span>
+          </div>
+
+          <div class="timer-cluster" id="q-modal-timer-cluster">
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring-svg" viewBox="0 0 36 36" aria-hidden="true">
+                <circle class="timer-ring-bg" cx="18" cy="18" r="15"></circle>
+                <circle class="timer-ring-fg" id="q-timer-ring-fg" cx="18" cy="18" r="15" stroke-dasharray="94.25" stroke-dashoffset="0"></circle>
+              </svg>
+              <span class="timer-badge" id="q-modal-timer-badge">60 ث</span>
+            </div>
+            <button type="button" class="icon-btn" id="btn-q-timer-pause" title="إيقاف أو استئناف المؤقت">⏸️</button>
+          </div>
+
+          <div style="display:flex; gap:0.4rem;">
+            <button type="button" class="icon-btn" id="btn-tts-question" title="قراءة السؤال صوتياً باللغة العربية" aria-label="قراءة السؤال صوتياً">🔊 قراءة السؤال</button>
+            <button type="button" class="icon-btn" id="btn-open-report-issue" title="الإبلاغ عن ملاحظة أو مراجعة للسؤال">🚩 إبلاغ</button>
+            <button type="button" class="icon-btn" id="btn-close-q-modal" aria-label="إخفاء نافذة السؤال مؤقتاً مع حفظ الوقت">
+              <span>✕ إغلاق مؤقت</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Optional Visual SVG Illustration with Tap-to-Enlarge -->
+        <div class="q-visual-wrapper" id="q-modal-visual-wrapper">
+          <div class="q-visual-frame" id="q-modal-visual-frame" tabindex="0" role="button" aria-label="تكبير الصورة التوضيحية">
+            <img id="q-modal-visual-img" src="" alt="رسم توضيحي للسؤال" decoding="async">
+          </div>
+          <div class="q-reveal-caption-bar" id="q-modal-reveal-caption" aria-live="polite"></div>
+          <button type="button" class="q-zoom-btn" id="btn-zoom-visual">🔍 تكبير الرسم التوضيحي</button>
+        </div>
+
+        <!-- Question Text -->
+        <div class="q-prompt-box" id="q-modal-prompt">نص السؤال</div>
+
+        <!-- Interactive Question Format Widget (Progressive Clues, Waddih Shway, Rakkiz Shway, Spot Diff, Wala Kalima, Drawing, Audio) -->
+        <div class="q-interactive-widget" id="q-interactive-widget" aria-live="polite"></div>
+
+        <!-- Open-Answer Default Guidance Banner -->
+        <div class="open-answer-guide" id="q-open-answer-guide">
+          🎙️ <strong>نمط الإجابة المفتوحة:</strong> يجيب الفريق شفهياً بدون خيارات، أو يمكنه طلب وسيلة المساعدة «إظهار الخيارات» قبل انتهاء الوقت.
+        </div>
+
+        <!-- Optional Smart Written Answer Checker (Fuzzy Arabic Normalization) -->
+        <div class="smart-answer-checker-box" id="q-smart-checker-box">
+          <div class="smart-answer-row">
+            <input type="text" id="input-smart-answer-guess" class="smart-answer-input" placeholder="✍️ (اختياري) اكتب إجابة الفريق للتحقق الآلي الفوري قبل كشف الحل..." aria-label="اكتب إجابة الفريق للتحقق الآلي">
+            <button type="button" class="btn-secondary" id="btn-check-smart-answer" style="min-height:42px; padding:0.4rem 0.9rem; font-size:0.86rem;">🔎 تحقق من الإجابة</button>
+          </div>
+          <div class="smart-answer-feedback" id="smart-answer-feedback" role="status" aria-live="polite"></div>
+        </div>
+
+        <!-- Active Lifeline Effects Strip -->
+        <div class="q-active-effects-strip" id="q-active-effects-strip"></div>
+
+        <!-- Pre-Reveal Action Toolbar (Lifelines, Steal/Pass, Reveal) -->
+        <div class="q-pre-reveal-toolbar" id="q-pre-reveal-toolbar">
+          <button type="button" class="lifeline-btn" id="btn-use-lifeline">
+            <span>💡 إظهار الخيارات</span>
+          </button>
+          <button type="button" class="lifeline-btn" id="btn-use-two-answers">
+            <span>✌️ جوابان</span>
+          </button>
+          <button type="button" class="lifeline-btn" id="btn-use-call-friend">
+            <span>📞 اتصال بصديق (30 ث)</span>
+          </button>
+          <button type="button" class="lifeline-btn" id="btn-use-istarih">
+            <span>🪑 استريح</span>
+          </button>
+          <button type="button" class="lifeline-btn" id="btn-use-alfakh">
+            <span>🪤 الفخ</span>
+          </button>
+          <button type="button" class="steal-btn" id="btn-pass-turn">
+            <span>🔄 تمرير الفرصة للفريق الآخر (10 ث)</span>
+          </button>
+          <button type="button" class="btn-primary" id="btn-reveal-answer">
+            <span>👁️ كشف الإجابة الصحيحة والشرح</span>
+          </button>
+        </div>
+
+        <!-- 3 Answer Choices (Hidden by default; shown ONLY when lifeline is activated) -->
+        <div class="q-options-list" id="q-modal-options" role="group" aria-label="خيارات الإجابة الثلاثة"></div>
+
+        <!-- Prominent Canonical Answer Card (Visible after Reveal) -->
+        <div class="canonical-answer-box" id="q-modal-canonical-box" aria-live="polite">
+          <span class="canonical-answer-label">✅ الإجابة الصحيحة المعتمدة:</span>
+          <div class="canonical-answer-value" id="q-modal-canonical-answer"></div>
+          <div class="accepted-answers-hint" id="q-modal-accepted-answers"></div>
+        </div>
+
+        <!-- Answer Explanation & Source Box (Visible after Reveal) -->
+        <div class="answer-explanation-box" id="q-modal-explanation-box" aria-live="polite">
+          <div style="font-weight:900; color:#34d399; font-size:1rem;">📚 التوضيح المعرفي الموثق:</div>
+          <p id="q-modal-explanation-text" style="font-size:0.98rem;"></p>
+          <span id="q-modal-source-text" style="font-size:0.8rem; color:var(--text-muted);"></span>
+        </div>
+
+        <!-- Host Judging Panel (Visible after Reveal) -->
+        <div class="host-judging-panel" id="host-judging-panel">
+          <div style="font-weight:800; text-align:center; color:var(--accent-gold);">
+            ⚖️ قرار مقدّم المسابقة — لمن تُمنح نقاط هذا السؤال؟
+          </div>
+
+          <!-- Optional Penalty Selector -->
+          <div id="host-penalty-row" style="display:none; align-items:center; justify-content:center; gap:0.65rem; flex-wrap:wrap;">
+            <label for="select-penalty-target" style="font-size:0.9rem; font-weight:700;">خصم عقوبة إجابة خاطئة:</label>
+            <select id="select-penalty-target" class="select-input" style="max-width:280px; min-height:42px;"></select>
+          </div>
+
+          <div class="host-award-buttons">
+            <button type="button" class="award-btn team1" id="btn-award-team1">الفريق الأول</button>
+            <button type="button" class="award-btn team2" id="btn-award-team2">الفريق الثاني</button>
+            <button type="button" class="award-btn no-one" id="btn-award-none">لا أحد (تخطي / لم يُجب أحد)</button>
+          </div>
+        </div>
+        <div class="dualsense-bar" id="q-dualsense-bar" aria-label="اختصارات لوحة المفاتيح ويد التحكم">
+          <span class="dualsense-key">🎮 <strong>يد التحكم دوال سينس ولوحة المفاتيح:</strong></span>
+          <span class="dualsense-key">[▢ / المسافة] كشف الإجابة</span>
+          <span class="dualsense-key">[△] إظهار الخيارات</span>
+          <span class="dualsense-key">[زر الكتف الأيسر] تمرير الفرصة</span>
+          <span class="dualsense-key">[زر الكتف الأيمن] إيقاف المؤقت</span>
+          <span class="dualsense-key">[✕ / إدخال] اختيار</span>
+          <span class="dualsense-key">[◯ / خروج] إغلاق</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         MODAL 2: HOW TO PLAY INSTRUCTIONS
+         ================================================================ -->
+    <div class="modal-backdrop" id="modal-howto" role="dialog" aria-modal="true" aria-labelledby="howto-title">
+      <div class="modal-panel">
+        <div class="q-modal-header">
+          <h3 id="howto-title" style="font-size:1.3rem; font-weight:900;">📖 طريقة اللعب وقوانين مسابقة «سين جيم»</h3>
+          <button type="button" class="icon-btn" data-close-modal="modal-howto">✕ إغلاق</button>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.85rem; font-size:0.96rem;">
+          <p><strong>١. اختيار الفئات الست:</strong> يختار منظم المسابقة (أو الفريقان بالتناوب) ٦ فئات معرفية (٣ لكل فريق) من أصل <span id="howto-total-cats">314</span> فئة مصورة تضم <span id="howto-total-qs">11110</span> سؤالاً موثقاً تغطي الكويت والخليج، المسلسلات والتلفزيون، المعرفة الإسلامية، اللغة والتاريخ، الجغرافيا، العلوم، الرياضة، الأنمي والألعاب، التقنية، والألغاز التفاعلية.</p>
+          <p><strong>٢. لوحة الـ ٣٦ سؤالاً:</strong> تحتوي كل فئة في المباراة على ٦ أسئلة مقسمة إلى ٣ مستويات: سؤالين بقيمة ٢٠٠ نقطة (سهل)، وسؤالين بقيمة ٤٠٠ نقطة (متوسط)، وسؤالين بقيمة ٦٠٠ نقطة (صعب).</p>
+          <p><strong>٣. نظام الإجابة المفتوحة ووسائل المساعدة:</strong> يظهر السؤال أولاً بدون خيارات ليجيب الفريق شفهياً. ويمكن لكل فريق استخدام وسيلة المساعدة <strong>«💡 إظهار الخيارات»</strong> (مرة واحدة في المباراة افتراضياً) لعرض ٣ خيارات قبل انتهاء الوقت أو كشف الإجابة، كما يمكن للمقدم تمرير الفرصة للفريق الآخر بمؤقت فرعي قصير.</p>
+          <p><strong>٤. كشف الإجابة والتحكيم:</strong> يضغط المقدم على <strong>«👁️ كشف الإجابة الصحيحة والشرح»</strong> فتظهر الإجابة المعتمدة والصياغات المقبولة والشرح الموثق، ثم يمنح النقاط لـ «الفريق الأول» أو «الفريق الثاني» أو «لا أحد».</p>
+          <p><strong>٥. الحفظ التلقائي ومنع التكرار:</strong> تحفظ اللعبة تقدم المباراة وسجل الأسئلة المكشوفة والملعوبة محلياً في المتصفح لضمان عدم تكرار الأسئلة في المباريات اللاحقة، مع إمكانية تصدير واستيراد ملف المباراة في أي وقت.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         MODAL 3: ORGANIZED 5-TAB SETTINGS & SAVED DATA SHEET / DIALOG
+         ================================================================ -->
+    <div class="modal-backdrop" id="modal-settings" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="modal-panel" style="max-width:680px;">
+        <div class="q-modal-header">
+          <h3 id="settings-title" style="font-size:1.2rem; font-weight:900;">⚙️ الإعدادات وتخصيص المسابقة</h3>
+          <button type="button" class="icon-btn" data-close-modal="modal-settings">✕ إغلاق</button>
+        </div>
+
+        <div class="settings-tabs-bar" role="tablist" aria-label="أقسام الإعدادات">
+          <button type="button" class="settings-tab-btn active" data-settings-tab="display">🎨 العرض والمظهر</button>
+          <button type="button" class="settings-tab-btn" data-settings-tab="gameplay">⏱️ قواعد اللعب</button>
+          <button type="button" class="settings-tab-btn" data-settings-tab="sound">🔊 الصوت</button>
+          <button type="button" class="settings-tab-btn" data-settings-tab="access">♿ الوصول والقوانين</button>
+          <button type="button" class="settings-tab-btn" data-settings-tab="data">💾 البيانات المحفوظة</button>
+        </div>
+
+        <!-- TAB 1: DISPLAY -->
+        <div class="settings-tab-pane active" id="settings-pane-display">
+          <div class="setup-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+            <div class="field-group">
+              <label for="sel-setting-theme">المظهر اللوني</label>
+              <select id="sel-setting-theme" class="select-input">
+                <option value="amoled" selected>🌑 الأسود العميق أموليد (الافتراضي)</option>
+                <option value="dark">🌙 الوضع الداكن الكحلي</option>
+                <option value="light">☀️ الوضع الفاتح الهادئ</option>
+                <option value="system">🖥️ تلقائي حسب النظام</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="sel-setting-presentation">نمط العرض للجمهور / التلفاز</label>
+              <select id="sel-setting-presentation" class="select-input">
+                <option value="normal">قياسي متوازن</option>
+                <option value="high-contrast">📺 تباين عالٍ لشاشات العرض والتلفاز</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="sel-setting-text-size">حجم الخطوط والعناصر</label>
+              <select id="sel-setting-text-size" class="select-input">
+                <option value="auto" selected>تلقائي ذكي حسب الشاشة</option>
+                <option value="90">90%</option>
+                <option value="100">100% (قياسي)</option>
+                <option value="110">110%</option>
+                <option value="120">120%</option>
+                <option value="130">130%</option>
+                <option value="140">140%</option>
+                <option value="150">150%</option>
+                <option value="160">160%</option>
+                <option value="170">170%</option>
+                <option value="180">180%</option>
+                <option value="190">190%</option>
+                <option value="200">200% (شاشات عملاقة)</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="sel-setting-density">كثافة بطاقات الفئات</label>
+              <select id="sel-setting-density" class="select-input">
+                <option value="comfortable">مريحة</option>
+                <option value="compact">مدمجة (عرض بطاقات أكثر)</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.75rem; align-items:center;">
+            <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; font-weight:700;">
+              <input type="checkbox" id="chk-setting-reduced-motion" style="width:20px; height:20px;">
+              <span>تقليل الحركة والانتقالات البصرية</span>
+            </label>
+            <button type="button" class="btn-secondary" id="btn-settings-fullscreen">⛶ تبديل ملء الشاشة</button>
+          </div>
+        </div>
+
+        <!-- TAB 2: GAMEPLAY -->
+        <div class="settings-tab-pane" id="settings-pane-gameplay">
+          <div class="setup-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+            <div class="field-group">
+              <label for="sel-setting-timer">مؤقت السؤال الرئيسي</label>
+              <select id="sel-setting-timer" class="select-input">
+                <option value="60">60 ثانية (افتراضي سين جيم)</option>
+                <option value="45">45 ثانية</option>
+                <option value="30">30 ثانية</option>
+                <option value="90">90 ثانية</option>
+                <option value="0">بدون مؤقت (مفتوح)</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="sel-setting-steal">تمرير الفرصة للفريق الآخر</label>
+              <select id="sel-setting-steal" class="select-input">
+                <option value="true">مفعل</option>
+                <option value="false">معطل</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="sel-setting-steal-timer">مؤقت تمرير الفرصة (الخطف)</label>
+              <select id="sel-setting-steal-timer" class="select-input">
+                <option value="10">10 ثوانٍ (الافتراضي المعتمد)</option>
+                <option value="15">15 ثانية</option>
+                <option value="20">20 ثانية</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="sel-setting-board-mode">حجم لوحة المسابقة</label>
+              <select id="sel-setting-board-mode" class="select-input">
+                <option value="classic">اللوحة الكاملة (36 سؤالاً — 6×6)</option>
+                <option value="quick">النمط السريع (18 سؤالاً — 6×3)</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="sel-setting-lifelines">الحد الأقصى لوسائل المساعدة لكل فريق</label>
+              <select id="sel-setting-lifelines" class="select-input">
+                <option value="3">3 وسائل لكل فريق (الافتراضي)</option>
+                <option value="2">وسيلتان لكل فريق</option>
+                <option value="1">وسيلة واحدة لكل فريق</option>
+                <option value="0">معطل بالكامل</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="sel-setting-penalty">خصم النقاط عند الخطأ</label>
+              <select id="sel-setting-penalty" class="select-input">
+                <option value="none">بدون خصم</option>
+                <option value="half">خصم نصف النقاط (50%)</option>
+                <option value="full">خصم كامل النقاط (100%)</option>
+              </select>
+            </div>
+          </div>
+          <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; font-weight:700;">
+            <input type="checkbox" id="chk-setting-open-hint" checked style="width:20px; height:20px;">
+            <span>إظهار تنويه الإجابة الشفهية المفتوحة داخل نافذة السؤال</span>
+          </label>
+          <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; font-weight:700;">
+            <input type="checkbox" id="chk-setting-exclude-spoilers" style="width:20px; height:20px;">
+            <span>🛡️ استبعاد أسئلة حرق الأحداث الكبرى والنهايات في فئات المسلسلات</span>
+          </label>
+        </div>
+
+        <!-- TAB 3: SOUND -->
+        <div class="settings-tab-pane" id="settings-pane-sound">
+          <label style="display:flex; align-items:center; gap:0.6rem; cursor:pointer; font-weight:800;">
+            <input type="checkbox" id="chk-setting-sound" checked style="width:22px; height:22px;">
+            <span>تفعيل المؤثرات الصوتية التفاعلية ومقاطع تحدي الصوت</span>
+          </label>
+          <div class="field-group" style="max-width:360px;">
+            <label for="rng-setting-volume">مستوى الصوت (<span id="lbl-setting-volume">85%</span>)</label>
+            <input type="range" id="rng-setting-volume" min="0" max="100" value="85" style="width:100%;">
+          </div>
+          <div>
+            <button type="button" class="btn-secondary" id="btn-test-sound">🔔 تجربة الصوت الآن</button>
+          </div>
+        </div>
+
+        <!-- TAB 4: ACCESSIBILITY & HOW TO PLAY -->
+        <div class="settings-tab-pane" id="settings-pane-access">
+          <p style="margin:0; font-size:0.92rem; line-height:1.6;">
+            تدعم اللعبة التنقل الكامل بلوحة المفاتيح (مفاتيح الأسهم، إدخال، خروج، المسافة لكشف الإجابة، والأرقام ١-٣) ويد التحكم اللاسلكية، بالإضافة إلى التكبير باللمس بإصبعين والسحب لكل صورة سؤال.
+          </p>
+          <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <button type="button" class="btn-secondary" id="btn-settings-open-howto">📖 فتح دليل طريقة اللعب وقوانين الوسائل الست</button>
+          </div>
+        </div>
+
+        <!-- TAB 5: SAVED DATA -->
+        <div class="settings-tab-pane" id="settings-pane-data">
+          <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <button type="button" class="btn-secondary" id="btn-settings-export-match">💾 تصدير المباراة الحالية</button>
+            <button type="button" class="btn-secondary" id="btn-settings-import-match">📂 استيراد ملف مباراة</button>
+            <button type="button" class="btn-secondary" id="btn-reset-question-history">🔄 تصفير سجل الأسئلة الملعوبة (<span id="reset-btn-total-qs">11110</span> سؤال)</button>
+            <button type="button" class="btn-secondary" id="btn-clear-favorites-data">⭐ مسح قائمة الفئات المفضلة</button>
+            <button type="button" class="btn-secondary" id="btn-export-issue-reports">🚩 تصدير بلاغات المراجعة (<span id="reports-count-badge">0</span>)</button>
+            <button type="button" class="btn-secondary" id="btn-reset-default-settings">⚙️ استعادة الإعدادات الافتراضية</button>
+          </div>
+          <div style="border-top:1px solid var(--border-subtle); padding-top:0.75rem; margin-top:0.35rem;">
+            <button type="button" class="btn-danger" id="btn-trigger-delete-all">🗑️ مسح جميع البيانات المحلية بالكامل...</button>
+            <div id="confirm-delete-all-box" style="display:none; margin-top:0.65rem; padding:0.75rem; background:rgba(185,28,28,0.08); border:1.5px solid #B91C1C; border-radius:10px;">
+              <p style="margin:0 0 0.5rem 0; font-weight:800; color:#B91C1C;">⚠️ تأكيد الحذف النهائي: سيتم مسح المباراة الجارية وسجل الأسئلة الملعوبة والمفضلة والإعدادات. هل أنت متأكد؟</p>
+              <div style="display:flex; gap:0.5rem;">
+                <button type="button" class="btn-danger" id="btn-reset-all-local-data">نعم، احذف جميع البيانات نهائياً</button>
+                <button type="button" class="btn-secondary" id="btn-cancel-delete-all">إلغاء</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid var(--border-subtle); padding-top:0.85rem; margin-top:0.6rem; display:flex; justify-content:flex-end;">
+          <button type="button" class="btn-primary" id="btn-save-settings">✅ حفظ وتطبيق الإعدادات</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         MODAL 4: TRUE FULL-VIEWPORT IMAGE VIEWER (PAN & ZOOM)
+         ================================================================ -->
+    <div class="modal-backdrop" id="modal-image-lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption">
+      <div class="lightbox-viewport" id="lightbox-viewport">
+        <div class="lightbox-topbar">
+          <h3 id="lightbox-caption" style="font-size:0.95rem; font-weight:800; margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:42vw;">🔍 معاينة الصورة</h3>
+          <div class="lightbox-controls">
+            <button type="button" class="lightbox-ctrl-btn" id="btn-lightbox-zoom-out" aria-label="تصغير">➖</button>
+            <span id="lightbox-zoom-badge" style="min-width:52px; text-align:center; font-weight:900; font-size:0.86rem; direction:ltr;">100%</span>
+            <button type="button" class="lightbox-ctrl-btn" id="btn-lightbox-zoom-in" aria-label="تكبير">➕</button>
+            <button type="button" class="lightbox-ctrl-btn" id="btn-lightbox-reset" aria-label="ملائمة الشاشة">⟲ ملائمة</button>
+            <button type="button" class="lightbox-ctrl-btn" id="btn-close-lightbox" aria-label="إغلاق المعاينة" style="background:#B91C1C; border-color:#EF4444;">✕ إغلاق</button>
+          </div>
+        </div>
+        <div class="lightbox-stage" id="lightbox-stage">
+          <img id="lightbox-img" src="" alt="معاينة مكبرة">
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         MODAL 5: REPORT QUESTION ISSUE (VAR / ملاحظات ومراجعة الأسئلة)
+         ================================================================ -->
+    <div class="modal-backdrop" id="modal-report-issue" role="dialog" aria-modal="true" aria-labelledby="report-issue-title">
+      <div class="modal-panel" style="max-width:560px;">
+        <div class="q-modal-header">
+          <h3 id="report-issue-title" style="font-size:1.15rem; font-weight:900;">🚩 الإبلاغ عن مشكلة بالسؤال (مراجعة المحتوى)</h3>
+          <button type="button" class="icon-btn" data-close-modal="modal-report-issue">✕ إغلاق</button>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div id="report-issue-q-meta" style="font-size:0.88rem; color:var(--accent-gold); font-weight:700;"></div>
+          <div class="field-group">
+            <label for="select-issue-type">نوع الملاحظة</label>
+            <select id="select-issue-type" class="select-input">
+              <option value="factual">تصحيح معلومة أو إجابة معتمدة</option>
+              <option value="wording">صياغة السؤال تحتاج لتوضيح</option>
+              <option value="media">ملاحظة على الصورة التوضيحية</option>
+              <option value="difficulty">قيمة النقاط لا تناسب صعوبة السؤال</option>
+              <option value="other">ملاحظة أخرى</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="input-issue-note">تفاصيل الملاحظة أو التصحيح المقترح</label>
+            <input type="text" id="input-issue-note" class="text-input" maxlength="240" placeholder="اكتب ملاحظتك هنا لحفظها في سجل المراجعة المحلي...">
+          </div>
+          <div style="display:flex; justify-content:flex-end; gap:0.6rem; margin-top:0.4rem;">
+            <button type="button" class="btn-secondary" data-close-modal="modal-report-issue">إلغاء</button>
+            <button type="button" class="btn-primary" id="btn-submit-issue-report">💾 حفظ البلاغ محلياً</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ================================================================
+         MODAL 6: CATEGORY DETAILS & NON-SPOILING SAMPLE PREVIEW
+         ================================================================ -->
+    <div class="modal-backdrop" id="modal-cat-details" role="dialog" aria-modal="true" aria-labelledby="cat-details-title">
+      <div class="modal-panel" style="max-width:560px;">
+        <div class="q-modal-header">
+          <h3 id="cat-details-title" style="font-size:1.15rem; font-weight:900;">ℹ️ تفاصيل الفئة ومعاينة الأسئلة</h3>
+          <button type="button" class="icon-btn" data-close-modal="modal-cat-details">✕ إغلاق</button>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div style="width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; background:var(--bg-secondary); border:1px solid var(--border-subtle);">
+            <img id="cat-details-img" src="" alt="" decoding="async" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:0.5rem; flex-wrap:wrap;">
+            <span class="q-cat-pill" id="cat-details-group">المجموعة</span>
+            <span class="q-points-pill" id="cat-details-counts">40 سؤالاً</span>
+          </div>
+          <p id="cat-details-desc" style="font-size:0.95rem; color:var(--text-primary); line-height:1.6; margin:0;"></p>
+          <div>
+            <div style="font-size:0.78rem; font-weight:800; color:var(--accent-gold); margin-bottom:0.25rem;">🖼️ شريط معاينة اللوحات البصرية في هذه الفئة (4 نماذج):</div>
+            <div class="cat-preview-strip" id="cat-details-preview-strip"></div>
+          </div>
+          <div id="cat-details-tiers" style="font-size:0.84rem; color:var(--text-secondary); background:var(--bg-secondary); padding:0.55rem 0.8rem; border-radius:8px; border:1px solid var(--border-subtle);"></div>
+
+          <!-- Non-Spoiling Sample Question Preview -->
+          <div id="cat-details-sample-box" style="background:var(--bg-secondary); border:1px solid var(--border-subtle); border-right:4px solid var(--accent-primary); border-radius:10px; padding:0.65rem 0.85rem;">
+            <div style="font-size:0.8rem; font-weight:800; color:var(--accent-primary); margin-bottom:0.3rem;">👀 نموذج سؤال تجريبي (لا يحرق أسئلة المباراة):</div>
+            <div id="cat-details-sample-q" style="font-size:0.9rem; font-weight:700; margin-bottom:0.35rem;"></div>
+            <button type="button" class="icon-btn" id="btn-toggle-sample-ans" style="min-height:34px !important; padding:0.2rem 0.6rem !important; font-size:0.78rem !important;">إظهار إجابة النموذج</button>
+            <div id="cat-details-sample-a" style="display:none; margin-top:0.35rem; font-weight:800; color:#15803D; font-size:0.88rem;"></div>
+          </div>
+
+          <div id="cat-details-source" style="font-size:0.8rem; color:var(--text-muted);"></div>
+          <div style="display:flex; gap:0.6rem; flex-wrap:wrap; justify-content:flex-end; margin-top:0.2rem;">
+            <button type="button" class="btn-secondary" id="btn-modal-cat-toggle-lock" style="display:none;">🔒 تثبيت الفئة</button>
+            <button type="button" class="btn-secondary" id="btn-modal-cat-toggle-fav">⭐ المفضلة</button>
+            <button type="button" class="btn-primary" id="btn-modal-cat-toggle-select">✅ اختيار الفئة</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ================================================================
+         MODAL 7: DISCREET HOST SCORE ADJUSTMENT & MATCH HISTORY SHEET
+         ================================================================ -->
+    <div class="modal-backdrop" id="modal-score-adjust" role="dialog" aria-modal="true" aria-labelledby="score-adjust-title">
+      <div class="modal-panel" style="max-width:620px;">
+        <div class="q-modal-header">
+          <h3 id="score-adjust-title" style="font-size:1.15rem; font-weight:900;">⚖️ إدارة النقاط وسجل المباراة</h3>
+          <button type="button" class="icon-btn" data-close-modal="modal-score-adjust">✕ إغلاق</button>
+        </div>
+
+        <div class="settings-tabs-bar" role="tablist" aria-label="أقسام إدارة النقاط">
+          <button type="button" class="settings-tab-btn active" id="tab-btn-score-manual" data-score-tab="manual">➕➖ تعديل نقاط يدوي</button>
+          <button type="button" class="settings-tab-btn" id="tab-btn-score-history" data-score-tab="history">📜 سجل المباراة وتصحيح سؤال (<span id="history-count-badge">0</span>)</button>
+        </div>
+
+        <!-- PANE 1: MANUAL SCORE ADJUSTMENT -->
+        <div class="settings-tab-pane active" id="score-pane-manual">
+          <div class="field-group">
+            <label>١. اختر الفريق المراد تعديل نقاطه</label>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+              <button type="button" class="btn-secondary" id="btn-adj-team1" style="min-height:44px; font-weight:900;">🛡️ الفريق الأول</button>
+              <button type="button" class="btn-secondary" id="btn-adj-team2" style="min-height:44px; font-weight:900;">⚔️ الفريق الثاني</button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label>٢. نوع العملية (إضافة أو خصم)</label>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+              <button type="button" class="btn-secondary" id="btn-adj-mode-add" style="min-height:44px; font-weight:900;">➕ إضافة نقاط (+)</button>
+              <button type="button" class="btn-secondary" id="btn-adj-mode-deduct" style="min-height:44px; font-weight:900;">➖ خصم نقاط (-)</button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="input-adj-amount">٣. قيمة النقاط (اختر قيمة سريعة أو أدخل رقماً صحيحاً موجباً)</label>
+            <div class="preset-amount-pills">
+              <button type="button" class="preset-amt-btn" data-adj-preset="100">100</button>
+              <button type="button" class="preset-amt-btn active" data-adj-preset="200">200</button>
+              <button type="button" class="preset-amt-btn" data-adj-preset="300">300</button>
+              <button type="button" class="preset-amt-btn" data-adj-preset="400">400</button>
+              <button type="button" class="preset-amt-btn" data-adj-preset="600">600</button>
+            </div>
+            <input type="number" id="input-adj-amount" class="text-input" min="1" max="10000" step="1" value="200" style="margin-top:0.35rem; direction:ltr; text-align:center; font-weight:900; font-size:1.05rem;">
+            <span id="adj-validation-error" style="display:none; color:#EF4444; font-size:0.8rem; font-weight:800;">⚠️ يرجى إدخال رقم صحيح موجب أكبر من الصفر.</span>
+          </div>
+
+          <div class="field-group">
+            <label for="input-adj-reason">٤. سبب التعديل (اختياري — يظهر في سجل المباراة)</label>
+            <input type="text" id="input-adj-reason" class="text-input" maxlength="100" placeholder="مثال: تصحيح يدوي، مكافأة إجابة إضافية، خصم مخالفة...">
+          </div>
+
+          <div class="score-preview-banner" id="adj-score-preview-box" aria-live="polite">
+            <div class="score-preview-item">
+              <span class="score-preview-lbl" id="adj-preview-team-lbl">الرصيد الحالي</span>
+              <span class="score-preview-val" id="adj-preview-current">0</span>
+            </div>
+            <div class="score-preview-item">
+              <span class="score-preview-lbl">مقدار التعديل</span>
+              <span class="score-preview-val" id="adj-preview-delta" style="color:#10b981;">+200</span>
+            </div>
+            <div class="score-preview-item">
+              <span class="score-preview-lbl">الرصيد بعد التعديل</span>
+              <span class="score-preview-val" id="adj-preview-projected" style="color:var(--accent-primary);">200</span>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:0.3rem;">
+            <button type="button" class="btn-secondary" data-close-modal="modal-score-adjust">إلغاء</button>
+            <button type="button" class="btn-primary" id="btn-confirm-score-adjust">✅ تطبيق تعديل النقاط</button>
+          </div>
+        </div>
+
+        <!-- PANE 2: MATCH HISTORY & QUESTION RE-ADJUDICATION -->
+        <div class="settings-tab-pane" id="score-pane-history">
+          <p style="margin:0; font-size:0.84rem; color:var(--text-secondary);">
+            يعرض هذا السجل جميع الأسئلة المحسومة والتعديلات اليدوية في المباراة بالترتيب، مع إمكانية تصحيح احتساب أي سؤال سابق أو التراجع عن آخر عملية.
+          </p>
+
+          <!-- Inline Question Re-Adjudication Box (hidden until a question row is clicked) -->
+          <div id="rejudge-cell-box" style="display:none; background:var(--bg-surface); border:2px solid var(--accent-primary); border-radius:12px; padding:0.75rem 0.9rem; flex-direction:column; gap:0.55rem;">
+            <div style="font-weight:900; font-size:0.9rem; color:var(--accent-primary);" id="rejudge-cell-title">✏️ تصحيح احتساب السؤال</div>
+            <div class="field-group">
+              <label for="select-rejudge-winner">منح نقاط السؤال بعد التصحيح إلى:</label>
+              <select id="select-rejudge-winner" class="select-input">
+                <option value="team1">الفريق الأول</option>
+                <option value="team2">الفريق الثاني</option>
+                <option value="none">لا أحد (بدون نقاط)</option>
+              </select>
+            </div>
+            <div class="field-group" id="rejudge-penalty-group" style="display:none;">
+              <label for="select-rejudge-penalty">عقوبة الإجابة الخاطئة على هذا السؤال:</label>
+              <select id="select-rejudge-penalty" class="select-input">
+                <option value="none">بدون خصم عقوبة</option>
+                <option value="team1">خصم من الفريق الأول</option>
+                <option value="team2">خصم من الفريق الثاني</option>
+              </select>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:0.45rem;">
+              <button type="button" class="btn-secondary" id="btn-cancel-rejudge">إلغاء</button>
+              <button type="button" class="btn-primary" id="btn-confirm-rejudge">💾 حفظ تصحيح السؤال</button>
+            </div>
+          </div>
+
+          <div class="match-history-list" id="match-history-list"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ================================================================
+         MODAL 8: LIGHTNING 60-SECOND SOLO CHALLENGE (تحدي البرق الفردي ⚡)
+         ================================================================ -->
+    <div class="modal-backdrop" id="modal-lightning" role="dialog" aria-modal="true" aria-labelledby="lightning-title">
+      <div class="modal-panel" style="max-width:650px;">
+        <div class="q-modal-header">
+          <h3 id="lightning-title" style="font-size:1.18rem; font-weight:900;">⚡ تحدي البرق الفردي — 60 ثانية من الأسئلة المتلاحقة</h3>
+          <button type="button" class="icon-btn" id="btn-close-lightning">✕ إغلاق</button>
+        </div>
+
+        <div class="lightning-hud-bar">
+          <div class="lightning-stat-item">
+            <span class="lightning-stat-val" id="lt-timer-val">60 ث</span>
+            <span class="lightning-stat-lbl">الوقت المتبقي</span>
+          </div>
+          <div class="lightning-stat-item">
+            <span class="lightning-stat-val" id="lt-score-val">0</span>
+            <span class="lightning-stat-lbl">النقاط الحالية</span>
+          </div>
+          <div class="lightning-stat-item">
+            <span class="lightning-stat-val" id="lt-streak-val">🔥 0</span>
+            <span class="lightning-stat-lbl">سلسلة متتالية</span>
+          </div>
+          <div class="lightning-stat-item">
+            <span class="lightning-stat-val" id="lt-best-val">🏆 0</span>
+            <span class="lightning-stat-lbl">أعلى رقم قياسي</span>
+          </div>
+        </div>
+
+        <div id="lt-stage-active" style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:0.5rem; flex-wrap:wrap;">
+            <span class="q-cat-pill" id="lt-cat-badge">الفئة</span>
+            <span class="q-points-pill" id="lt-pts-badge">200 نقطة</span>
+          </div>
+          <div class="q-prompt-box" id="lt-question-text" style="font-size:1.12rem; padding:1rem;">اضغط «ابدأ جولة البرق» للانطلاق!</div>
+          <div class="lightning-options-grid" id="lt-options-grid"></div>
+        </div>
+
+        <div id="lt-stage-summary" style="display:none; flex-direction:column; align-items:center; gap:0.75rem; text-align:center; padding:1rem;">
+          <div style="font-size:2.6rem;">⚡🏆</div>
+          <h4 id="lt-summary-headline" style="font-size:1.35rem; font-weight:900; color:var(--accent-gold);">انتهى وقت تحدي البرق!</h4>
+          <p id="lt-summary-details" style="font-size:0.98rem; color:var(--text-secondary);"></p>
+          <button type="button" class="btn-primary" id="btn-lt-restart">🔄 جولة برق جديدة (60 ثانية)</button>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- ================================================================
+         MODAL 9: KEYBOARD & CONTROLLER SHORTCUTS CHEAT-SHEET
+         ================================================================ -->
+    <div class="modal-backdrop" id="modal-shortcuts" role="dialog" aria-modal="true" aria-labelledby="shortcuts-title">
+      <div class="modal-panel" style="max-width:580px;">
+        <div class="q-modal-header">
+          <h3 id="shortcuts-title" style="font-size:1.18rem; font-weight:900;">⌨️ دليل اختصارات لوحة المفاتيح ويد التحكم</h3>
+          <button type="button" class="icon-btn" data-close-modal="modal-shortcuts">✕ إغلاق</button>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:0.65rem; font-size:0.9rem;">
+          <div class="stat-card" style="text-align:right; padding:0.75rem;">
+            <strong style="color:var(--accent-gold);">🎯 داخل نافذة السؤال:</strong>
+            <p style="margin-top:0.35rem;">• <strong>المسافة:</strong> كشف الإجابة الصحيحة والشرح</p>
+            <p>• <strong>الأرقام ١ / ٢ / ٣:</strong> اختيار أو تمييز الخيارات الثلاثة</p>
+            <p>• <strong>حرف (ح) أو (م):</strong> إيقاف أو استئناف مؤقت السؤال</p>
+            <p>• <strong>حرف (ص):</strong> قراءة نص السؤال صوتياً</p>
+          </div>
+          <div class="stat-card" style="text-align:right; padding:0.75rem;">
+            <strong style="color:var(--accent-cyan);">🧭 التنقل والعرض العام:</strong>
+            <p style="margin-top:0.35rem;">• <strong>الأسهم الأربعة:</strong> التنقل بين خلايا اللوحة والبطاقات</p>
+            <p>• <strong>مفتاح الإدخال:</strong> فتح الخلية أو تأكيد الاختيار</p>
+            <p>• <strong>مفتاح الخروج:</strong> إغلاق النافذة المفتوحة</p>
+            <p>• <strong>حرف (ف):</strong> تبديل ملء الشاشة أو العرض الكبير</p>
+            <p>• <strong>علامتا (+) و (-):</strong> تكبير أو تصغير الصورة أو الواجهة</p>
+            <p>• <strong>علامة (؟):</strong> فتح نافذة الاختصارات هذه</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         MODAL 10: HALL OF FAME & GLOBAL STATISTICS
+         ================================================================ -->
+    <div class="modal-backdrop" id="modal-hall-of-fame" role="dialog" aria-modal="true" aria-labelledby="hof-title">
+      <div class="modal-panel" style="max-width:660px;">
+        <div class="q-modal-header">
+          <h3 id="hof-title" style="font-size:1.18rem; font-weight:900;">🏆 لوحة الشرف والإحصائيات الشاملة</h3>
+          <button type="button" class="icon-btn" data-close-modal="modal-hall-of-fame">✕ إغلاق</button>
+        </div>
+        <div id="hof-stats-summary" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:0.6rem; margin-bottom:0.85rem;"></div>
+        <div style="background:var(--bg-secondary); border:1px solid var(--border-subtle); border-radius:12px; padding:0.85rem;">
+          <h4 style="font-size:0.96rem; color:var(--accent-gold); margin-bottom:0.5rem;">🥇 أعلى النتائج المسجلة في المباريات:</h4>
+          <div id="hof-records-list" style="display:flex; flex-direction:column; gap:0.45rem; font-size:0.88rem;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         MODAL 11: CUSTOM PACKS MANAGER (حزم الأسئلة والفئات المخصصة)
+         ================================================================ -->
+    <div class="modal-backdrop" id="modal-custom-packs" role="dialog" aria-modal="true" aria-labelledby="custom-packs-title">
+      <div class="modal-panel" style="max-width:680px;">
+        <div class="q-modal-header">
+          <h3 id="custom-packs-title" style="font-size:1.18rem; font-weight:900;">➕ مدير الحزم والفئات المخصصة (مخصص)</h3>
+          <button type="button" class="icon-btn" data-close-modal="modal-custom-packs">✕ إغلاق</button>
+        </div>
+        <p style="font-size:0.86rem; color:var(--text-secondary); margin:0 0 0.65rem 0;">
+          أضف فئة مخصصة أو أسئلة جديدة مع إمكانية إرفاق صورة (يتم تحويلها تلقائياً إلى صيغة ويب بي مضغوطة في المتصفح) وحفظها محلياً أو تصديرها.
+        </p>
+        <div class="setup-grid" style="grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:0.6rem;">
+          <div class="field-group">
+            <label for="input-custom-cat-title">اسم الفئة المخصصة</label>
+            <input type="text" id="input-custom-cat-title" class="text-input" placeholder="مثال: مسابقة ديوانيتنا الخاصة">
+          </div>
+          <div class="field-group">
+            <label for="input-custom-q-text">نص السؤال المخصص</label>
+            <input type="text" id="input-custom-q-text" class="text-input" placeholder="اكتب السؤال هنا...">
+          </div>
+          <div class="field-group">
+            <label for="input-custom-q-ans">الإجابة الصحيحة</label>
+            <input type="text" id="input-custom-q-ans" class="text-input" placeholder="الإجابة الصحيحة">
+          </div>
+          <div class="field-group">
+            <label for="input-custom-q-w1">خيار تمويهي أول</label>
+            <input type="text" id="input-custom-q-w1" class="text-input" placeholder="خيار خاطئ ١">
+          </div>
+          <div class="field-group">
+            <label for="input-custom-q-w2">خيار تمويهي ثانٍ</label>
+            <input type="text" id="input-custom-q-w2" class="text-input" placeholder="خيار خاطئ ٢">
+          </div>
+          <div class="field-group">
+            <label for="input-custom-q-img">صورة السؤال (اختياري)</label>
+            <input type="file" id="input-custom-q-img" accept="image/*" class="text-input" style="padding:0.35rem;">
+          </div>
+        </div>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem; justify-content:space-between;">
+          <div style="display:flex; gap:0.45rem; flex-wrap:wrap;">
+            <button type="button" class="btn-primary" id="btn-add-custom-question">➕ إضافة السؤال للحزمة المخصصة</button>
+            <button type="button" class="btn-secondary" id="btn-export-custom-packs">💾 تصدير الحزم المخصصة</button>
+            <button type="button" class="btn-secondary" id="btn-import-custom-packs">📂 استيراد حزمة مخصصة</button>
+            <input type="file" id="input-import-custom-packs-file" accept=".json,application/json" style="display:none;">
+          </div>
+          <span id="custom-packs-count-badge" class="q-points-pill">0 أسئلة مخصصة</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         MODAL 12: MOBILE & OVERFLOW MORE ACTIONS BOTTOM SHEET (⋯)
+         ================================================================ -->
+    <div class="modal-backdrop" id="modal-nav-more" role="dialog" aria-modal="true" aria-labelledby="nav-more-title">
+      <div class="modal-panel">
+        <div class="sheet-handle" aria-hidden="true"></div>
+        <div class="q-modal-header" style="border-bottom:1px solid var(--border-subtle); padding-bottom:0.45rem;">
+          <h3 id="nav-more-title" style="font-size:1rem; font-weight:900;">🛠️ الأدوات والخيارات السريعة</h3>
+          <button type="button" class="icon-btn" data-close-modal="modal-nav-more">✕ إغلاق</button>
+        </div>
+
+        <div class="more-sheet-scale-row">
+          <span style="font-size:0.84rem; font-weight:800; color:var(--text-secondary);">🔍 حجم عناصر الواجهة:</span>
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+            <button type="button" class="icon-btn" id="btn-more-scale-down" aria-label="تصغير حجم الواجهة">أ-</button>
+            <span id="more-ui-scale-label" style="min-width:48px; text-align:center; font-weight:900; color:var(--accent-gold); direction:ltr;">100%</span>
+            <button type="button" class="icon-btn" id="btn-more-scale-up" aria-label="تكبير حجم الواجهة">أ+</button>
+          </div>
+        </div>
+
+        <div class="more-sheet-grid">
+          <button type="button" class="more-sheet-item" id="btn-more-hall-of-fame">
+            <span>🏆</span><span>لوحة الشرف والإحصائيات</span>
+          </button>
+          <button type="button" class="more-sheet-item" id="btn-more-custom-packs">
+            <span>➕</span><span>الحزم والفئات المخصصة</span>
+          </button>
+          <button type="button" class="more-sheet-item" id="btn-more-shortcuts">
+            <span>⌨️</span><span>اختصارات التحكم</span>
+          </button>
+          <button type="button" class="more-sheet-item" id="btn-more-howto">
+            <span>📖</span><span>طريقة اللعب والقوانين</span>
+          </button>
+          <button type="button" class="more-sheet-item" id="btn-more-theme">
+            <span>☀️</span><span id="more-theme-label">تبديل المظهر اللوني</span>
+          </button>
+          <button type="button" class="more-sheet-item" id="btn-more-big-screen">
+            <span>🖥️</span><span>وضع العرض الكبير للجمهور</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Celebration Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toast-container" aria-live="polite"></div>
+  </div>
+
+  <!-- Embedded Verified Dataset (40 Categories, 1,600 Questions, 231 Genuine Visual SVGs) -->
+  
+
+  
+<script src="assets/media/covers.js"></script>
+<script src="assets/media/group_a.js"></script>
+<script src="assets/media/group_b.js"></script>
+<script src="assets/media/group_c.js"></script>
+<script src="assets/media/group_d.js"></script>
+<script src="assets/media/group_e.js"></script>
+<script src="assets/media/group_f.js"></script>
+<script src="assets/media/group_g.js"></script>
+<script src="assets/media/group_h.js"></script>
+<script src="assets/media/group_i.js"></script>
+<script src="assets/media/group_j.js"></script>
+<script src="assets/media/group_k.js"></script>
+<script src="assets/media/group_l.js"></script>
+<script src="data/catalog.js"></script>
+<script src="data/questions/01.js"></script>
+<script src="data/questions/02.js"></script>
+<script src="data/questions/03.js"></script>
+<script src="data/questions/04.js"></script>
+<script src="data/questions/05.js"></script>
+<script src="data/questions/06.js"></script>
+<script src="data/questions/07.js"></script>
+<script src="data/questions/08.js"></script>
+<script src="data/questions/09.js"></script>
+<script src="data/questions/10.js"></script>
+<script src="data/questions/11.js"></script>
+<script src="data/questions/12.js"></script>
+<script src="data/questions/13.js"></script>
+<script src="data/questions/14.js"></script>
+<script src="data/questions/15.js"></script>
+<script src="data/questions/16.js"></script>
+<script src="data/questions/17.js"></script>
+<script src="data/questions/18.js"></script>
+<script src="data/questions/19.js"></script>
+<script src="data/questions/20.js"></script>
+<script src="data/questions/21.js"></script>
+<script src="data/questions/22.js"></script>
+<script src="data/questions/23.js"></script>
+<script src="data/registry/01.js"></script>
+<script src="data/registry/02.js"></script>
+<script src="data/registry/03.js"></script>
+<script src="data/registry/04.js"></script>
+<script src="data/registry/05.js"></script>
+<script src="data/registry/06.js"></script>
+<script src="data/registry/07.js"></script>
+<script src="data/registry/08.js"></script>
+<script src="data/registry/09.js"></script>
+<script src="data/registry/10.js"></script>
+<script src="data/registry/11.js"></script>
+<script src="src/media-resolver.js"></script>
+<script src="src/engine.js"></script>
+<script src="src/audio.js"></script>
+<script src="src/app.js"></script>
+</body>
+</html>
