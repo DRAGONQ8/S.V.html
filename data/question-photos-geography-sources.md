@@ -13,4 +13,4 @@ The following photographs were resized and converted to WebP. The original files
 - `christ_redeemer.webp`: [File:Christ the Redeemer - Cristo Redentor.jpg](https://commons.wikimedia.org/wiki/File:Christ_the_Redeemer_-_Cristo_Redentor.jpg), Arne Müseler; [CC BY-SA 3.0 de](https://creativecommons.org/licenses/by-sa/3.0/de/deed.en).
 - `chichen_itza.webp`: [File:Chichen Itza 3.jpg](https://commons.wikimedia.org/wiki/File:Chichen_Itza_3.jpg), Daniel Schwen; [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0).
 
-The Kuwait Towers photograph reuses the existing `asset:photo_gulf_kw_towers` from the project’s group A media pack.
+The Kuwait Towers photograph reuses `assets/images/categories/kw_landmarks.webp`; its source and license are documented in `assets/images/ATTRIBUTION.md`.

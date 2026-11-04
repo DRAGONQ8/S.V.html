@@ -7,7 +7,8 @@
 
   var Engine = window.SeenJeemEngine;
   var AudioFX = window.SeenJeemAudio;
-  var DATA = window.SEEN_JEEM_DATA || { groups: [], categories: [], questions: [], mediaRegistry: {}, stats: {} };
+  // Keep suspended image-round data intact while excluding it from playable pools.
+  var DATA = Engine.getPlayableCatalog(window.SEEN_JEEM_DATA || { groups: [], categories: [], questions: [], mediaRegistry: {}, stats: {} });
 
   var TEAM_COLORS = Engine.VALID_TEAM_COLORS;
 
@@ -42,13 +43,13 @@
     visual_night: {
       key: 'visual_night',
       title: '🖼️ سهرة بصرية مصورة',
-      subtitle: 'ألغاز بصرية، معالم، أعلام، شعارات، ووضح شوي وركز شوي',
+      subtitle: 'ألغاز بصرية، معالم، أعلام، شعارات واختراعات',
       icon: '🖼️',
       accent: '#ec4899',
       slots: [
         ['who_is_landmark', 'famous_landmarks', 'kw_landmarks'],
         ['flags_capitals', 'club_crests', 'guess_the_logo'],
-        ['waddih_shway', 'rakkiz_shway', 'spot_the_difference'],
+        ['inventions', 'kw_landmarks', 'famous_landmarks'],
         ['football_stadiums'],
         ['visual_puzzles', 'macro_object_closeup', 'world_of_watches'],
         ['who_is_the_player']
@@ -101,7 +102,7 @@
         var vis = DATA.categories.filter(function (c) {
           var qs = QUESTIONS_BY_CAT[c.id] || [];
           return c.groupId === 'group_i' ||
-            qs.filter(function (q) { return !!(q.assetId || q.imageDataUri); }).length >= 8;
+            qs.filter(window.SeenJeemMedia.isRealQuestionPhoto).length >= 8;
         }).map(function (c) { return c.id; });
         return [vis, vis, vis, vis, vis, vis];
       }
@@ -330,6 +331,13 @@
     return AppState.modalStack[AppState.modalStack.length - 1].id;
   }
 
+  function syncModalLayers() {
+    AppState.modalStack.forEach(function (entry, index) {
+      var layer = document.getElementById(entry.id);
+      if (layer) layer.style.zIndex = String(200 + index);
+    });
+  }
+
   function openModalLayer(modalId) {
     var backdrop = document.getElementById(modalId);
     if (!backdrop) return;
@@ -357,6 +365,8 @@
       pausedQuestionTimer: pausedQTimer
     });
 
+    syncModalLayers();
+
     backdrop.classList.add('open');
 
     setTimeout(function () {
@@ -374,6 +384,7 @@
     var backdrop = document.getElementById(targetId);
     if (backdrop) {
       backdrop.classList.remove('open');
+      backdrop.style.removeProperty('z-index');
     }
 
     if (targetId === 'modal-question') {
@@ -396,6 +407,7 @@
     if (idx !== -1) {
       popped = AppState.modalStack.splice(idx, 1)[0];
     }
+    syncModalLayers();
 
     if (popped && popped.pausedQuestionTimer && getTopModalId() === 'modal-question' && AppState.activeMatch && AppState.activeQuestionModal.cellId) {
       var qCell = Engine.findCell(AppState.activeMatch, AppState.activeQuestionModal.cellId);
@@ -418,6 +430,7 @@
     var modals = document.querySelectorAll('.modal-backdrop');
     for (var i = 0; i < modals.length; i++) {
       modals[i].classList.remove('open');
+      modals[i].style.removeProperty('z-index');
     }
   }
 
@@ -477,6 +490,11 @@
       var check = Engine.validateImportedMatchState(savedMatch, CAT_BY_ID);
       if (check.valid) {
         AppState.activeMatch = check.matchState;
+        // Older versions counted completed matches but did not keep records.
+        if (!Array.isArray(AppState.globalStats.records) && AppState.activeMatch.status === 'completed' && AppState.globalStats.matchesPlayed > 0) {
+          Engine.recordCompletedMatch(AppState.globalStats, AppState.activeMatch, true);
+          saveToStorage(Engine.STORAGE_KEYS.STATS, AppState.globalStats);
+        }
         Object.assign(AppState.playedHistory, check.playedHistory);
         Object.assign(AppState.exposedHistory, check.exposedHistory);
       } else {
@@ -684,9 +702,7 @@
     var matchesPlayedEl = document.getElementById('stat-matches-played');
 
     var totalQs = DATA.questions.length;
-    var combinedSeen = Object.assign({}, AppState.playedHistory, AppState.exposedHistory);
-    var seenCount = Object.keys(combinedSeen).length;
-    var unseenCount = Math.max(0, totalQs - seenCount);
+    var unseenCount = Engine.countUnseenQuestions(DATA.questions, AppState.playedHistory, AppState.exposedHistory);
 
     var totalCats = DATA.categories.length;
     if (totalCatsEl) totalCatsEl.textContent = String(totalCats);
@@ -706,6 +722,12 @@
     var htQs = document.getElementById('howto-total-qs');
     if (htCats) htCats.textContent = String(totalCats);
     if (htQs) htQs.textContent = String(totalQs);
+    var heroCats = document.getElementById('hero-total-categories');
+    var heroQs = document.getElementById('hero-total-questions');
+    if (heroCats) heroCats.textContent = String(totalCats);
+    if (heroQs) heroQs.textContent = String(totalQs);
+    var searchInput = document.getElementById('input-search-categories');
+    if (searchInput) searchInput.placeholder = '🔍 ابحث في ' + totalCats + ' فئة بالاسم أو الوصف...';
     var rstQs = document.getElementById('reset-btn-total-qs');
     if (rstQs) rstQs.textContent = String(totalQs);
     document.title = 'سين جيم — تحدي المعرفة (' + totalCats + ' فئة • ' + totalQs + ' سؤالاً)';
@@ -926,12 +948,12 @@
       if (AppState.statusFilter === 'selected' && !AppState.categoryOwners[c.id]) return false;
       if (AppState.statusFilter === 'visual') {
         var qsCheck = QUESTIONS_BY_CAT[c.id] || [];
-        var hasVis = qsCheck.some(function (q) { return !!(q.assetId || q.imageDataUri || (q.format && q.format !== 'standard')); });
+        var hasVis = qsCheck.some(window.SeenJeemMedia.isRealQuestionPhoto);
         if (!hasVis) return false;
       }
       if (AppState.statusFilter === 'visual_rich') {
         var qsVisRich = QUESTIONS_BY_CAT[c.id] || [];
-        var imgCntRich = qsVisRich.filter(function (q) { return !!(q.assetId || q.imageDataUri); }).length;
+        var imgCntRich = qsVisRich.filter(window.SeenJeemMedia.isRealQuestionPhoto).length;
         if (imgCntRich < Math.ceil(qsVisRich.length * 0.5)) return false;
       }
       if (AppState.statusFilter === 'new_cats' && !c.isNew) return false;
@@ -950,8 +972,8 @@
       });
     } else if (AppState.sortBy === 'images_desc') {
       filtered = filtered.slice().sort(function (a, b) {
-        var ia = (QUESTIONS_BY_CAT[a.id] || []).filter(function (q) { return !!(q.assetId || q.imageDataUri); }).length;
-        var ib = (QUESTIONS_BY_CAT[b.id] || []).filter(function (q) { return !!(q.assetId || q.imageDataUri); }).length;
+        var ia = (QUESTIONS_BY_CAT[a.id] || []).filter(window.SeenJeemMedia.isRealQuestionPhoto).length;
+        var ib = (QUESTIONS_BY_CAT[b.id] || []).filter(window.SeenJeemMedia.isRealQuestionPhoto).length;
         return (ib - ia) || a.title.localeCompare(b.title, 'ar');
       });
     } else if (AppState.sortBy === 'unseen_desc') {
@@ -1080,9 +1102,9 @@
       var footerDiv = document.createElement('div');
       footerDiv.className = 'cat-card-footer';
 
-      var imgInCat = catQuestions.filter(function (q) { return !!(q.assetId || q.imageDataUri); }).length;
+      var imgInCat = catQuestions.filter(window.SeenJeemMedia.isRealQuestionPhoto).length;
       var totalSpan = document.createElement('span');
-      totalSpan.textContent = catQuestions.length + ' سؤال • 📸 ' + imgInCat;
+      totalSpan.textContent = catQuestions.length + ' سؤال • 📸 ' + imgInCat + ' سؤال بصورة حقيقية';
       var unseenSpan = document.createElement('span');
       unseenSpan.innerHTML = '<span class="cat-diff-dots" title="توازن المستويات (٢٠٠ / ٤٠٠ / ٦٠٠)"><i class="cat-diff-dot easy"></i><i class="cat-diff-dot med"></i><i class="cat-diff-dot hard"></i></span> جديد: ' + unseenInCat;
       footerDiv.appendChild(totalSpan);
@@ -1190,23 +1212,18 @@
     var stripEl = document.getElementById('cat-details-preview-strip');
     if (stripEl) {
       stripEl.textContent = '';
-      var imgQs = qs.filter(function (q) { return !!(q.assetId || q.imageDataUri); });
+      var imgQs = qs.filter(window.SeenJeemMedia.isRealQuestionPhoto);
       var previewAssets = [];
       var seenAs = {};
-      if (cat.coverAssetId) {
-        previewAssets.push({ src: resolveImg(cat.coverAssetId), alt: 'غلاف ' + cat.title });
-        seenAs[cat.coverAssetId] = true;
-      }
       for (var pi = 0; pi < imgQs.length && previewAssets.length < 4; pi++) {
         var aid = imgQs[pi].assetId || imgQs[pi].imageDataUri;
-        if (aid && !seenAs[aid]) {
-          seenAs[aid] = true;
-          previewAssets.push({ src: resolveImg(aid), alt: imgQs[pi].imageAlt || ('معاينة ' + (pi + 1)) });
+        var previewSrc = resolveImg(aid);
+        if (previewSrc && !seenAs[previewSrc]) {
+          seenAs[previewSrc] = true;
+          previewAssets.push({ src: previewSrc, alt: imgQs[pi].imageAlt || ('معاينة ' + (pi + 1)) });
         }
       }
-      while (previewAssets.length < 4 && previewAssets.length > 0) {
-        previewAssets.push(previewAssets[0]);
-      }
+      if (!previewAssets.length) stripEl.textContent = 'لا توجد صور حقيقية موثقة لأسئلة هذه الفئة حتى الآن.';
       previewAssets.slice(0, 4).forEach(function (pa) {
         var th = document.createElement('div');
         th.className = 'cat-preview-thumb';
@@ -1216,12 +1233,7 @@
         tim.decoding = 'async';
         th.appendChild(tim);
         th.addEventListener('click', function () {
-          var vImg = document.getElementById('q-modal-visual-img');
-          if (vImg) {
-            vImg.src = pa.src;
-            vImg.alt = pa.alt;
-          }
-          openVisualLightbox();
+          openVisualLightbox(pa.src, pa.alt);
         });
         stripEl.appendChild(th);
       });
@@ -1614,10 +1626,12 @@
     if (pickerT1Btn) {
       pickerT1Btn.textContent = '🛡️ الفريق ١ (' + t1.length + '/3)';
       pickerT1Btn.classList.toggle('active-team1', AppState.draftSelection.activePickerTeam === 'team1');
+      pickerT1Btn.setAttribute('aria-pressed', String(AppState.draftSelection.activePickerTeam === 'team1'));
     }
     if (pickerT2Btn) {
       pickerT2Btn.textContent = '⚔️ الفريق ٢ (' + t2.length + '/3)';
       pickerT2Btn.classList.toggle('active-team2', AppState.draftSelection.activePickerTeam === 'team2');
+      pickerT2Btn.setAttribute('aria-pressed', String(AppState.draftSelection.activePickerTeam === 'team2'));
     }
 
     if (turnHint) {
@@ -2344,7 +2358,7 @@
       statusPill.textContent = statusLabels[cell.status] || 'سؤال نشط';
     }
 
-    var qImgSrc = resolveImg(q.assetId || q.imageDataUri || q.image);
+    var qImgSrc = window.SeenJeemMedia.shouldDisplayQuestionImage(q) ? resolveImg(q.assetId || q.imageDataUri || q.image) : '';
     var visualFrame = document.getElementById('q-modal-visual-frame');
     var revealCapEl = document.getElementById('q-modal-reveal-caption');
     if (visualWrapper && visualImg) {
@@ -2358,10 +2372,7 @@
         };
         visualImg.onerror = function () {
           if (visualFrame) visualFrame.classList.remove('is-loading');
-          var fallbackCov = col && col.coverAssetId ? resolveImg(col.coverAssetId) : '';
-          if (fallbackCov && visualImg.src !== fallbackCov) {
-            visualImg.src = fallbackCov;
-          }
+          visualWrapper.classList.remove('visible');
         };
         visualImg.decoding = 'async';
         visualImg.src = qImgSrc;
@@ -2391,7 +2402,7 @@
           var nextCell = pCol.cells.find(function (cl) { return !cl.answered && cl.cellId !== cellId; });
           if (nextCell && match.questionsByCell[nextCell.cellId]) {
             var nq = match.questionsByCell[nextCell.cellId];
-            var nSrc = resolveImg(nq.assetId || nq.imageDataUri || nq.image);
+            var nSrc = window.SeenJeemMedia.shouldDisplayQuestionImage(nq) ? resolveImg(nq.assetId || nq.imageDataUri || nq.image) : '';
             if (nSrc) {
               var preImg = new Image();
               preImg.decoding = 'async';
@@ -2779,10 +2790,14 @@
     var penalizedTeam = (penaltySelect && penaltySelect.value !== 'none') ? penaltySelect.value : null;
 
     var q = match.questionsByCell[cellId];
+    var previouslyPlayed = !!(q && AppState.playedHistory[q.id]);
     Engine.scoreCell(match, cellId, {
       awardedTo: awardedTo,
       penalizedTeam: penalizedTeam
     });
+
+    var scoreAction = match.actionHistory[match.actionHistory.length - 1];
+    if (scoreAction && scoreAction.type === 'SCORE_CELL') scoreAction.previouslyPlayed = previouslyPlayed;
 
     if (q && q.id) {
       AppState.playedHistory[q.id] = true;
@@ -2795,7 +2810,7 @@
       AppState.globalStats.totalQuestionsAnswered = (AppState.globalStats.totalQuestionsAnswered || 0) + 1;
     }
     if (match.status === 'completed') {
-      AppState.globalStats.matchesPlayed = (AppState.globalStats.matchesPlayed || 0) + 1;
+      Engine.recordCompletedMatch(AppState.globalStats, match);
     }
     saveToStorage(Engine.STORAGE_KEYS.STATS, AppState.globalStats);
     saveToStorage(Engine.STORAGE_KEYS.ACTIVE_MATCH, match);
@@ -2823,7 +2838,7 @@
       saveToStorage(Engine.STORAGE_KEYS.EXPOSED_HISTORY, AppState.exposedHistory);
     }
     if (match.status === 'completed') {
-      AppState.globalStats.matchesPlayed = (AppState.globalStats.matchesPlayed || 0) + 1;
+      Engine.recordCompletedMatch(AppState.globalStats, match);
       saveToStorage(Engine.STORAGE_KEYS.STATS, AppState.globalStats);
     }
     saveToStorage(Engine.STORAGE_KEYS.ACTIVE_MATCH, match);
@@ -2845,10 +2860,10 @@
         AppState.globalStats.totalQuestionsAnswered = Math.max(0, (AppState.globalStats.totalQuestionsAnswered || 0) - 1);
       }
       if (res.wasCompletedTransition) {
-        AppState.globalStats.matchesPlayed = Math.max(0, (AppState.globalStats.matchesPlayed || 0) - 1);
+        Engine.removeCompletedMatchRecord(AppState.globalStats, match.matchId);
       }
       if (res.undoneAction && res.undoneAction.type === 'SCORE_CELL' && res.undoneAction.questionId) {
-        delete AppState.playedHistory[res.undoneAction.questionId];
+        Engine.restorePlayedHistoryOnUndo(AppState.playedHistory, res.undoneAction);
         saveToStorage(Engine.STORAGE_KEYS.PLAYED_HISTORY, AppState.playedHistory);
       }
       saveToStorage(Engine.STORAGE_KEYS.STATS, AppState.globalStats);
@@ -2876,6 +2891,10 @@
     if (!match) {
       navigateToScreen('home');
       return;
+    }
+    if (match.status === 'completed') {
+      Engine.recordCompletedMatch(AppState.globalStats, match);
+      saveToStorage(Engine.STORAGE_KEYS.STATS, AppState.globalStats);
     }
     var res = Engine.getMatchResult(match);
     var headline = document.getElementById('results-winner-headline');
@@ -3301,23 +3320,24 @@
     });
   }
 
-  function openVisualLightbox() {
+  function openVisualLightbox(previewSrc, previewAlt) {
     var visualImg = document.getElementById('q-modal-visual-img');
     var lbImg = document.getElementById('lightbox-img');
     var lbCap = document.getElementById('lightbox-caption');
-    if (!visualImg || !visualImg.src || !lbImg) return;
-    if (visualImg.style.visibility === 'hidden') {
+    var isPreview = typeof previewSrc === 'string' && !!previewSrc;
+    if (!lbImg || (!isPreview && (!visualImg || !visualImg.src))) return;
+    if (!isPreview && visualImg.style.visibility === 'hidden') {
       showToast('الصورة مخفية حالياً في تحدي الذاكرة (ركز شوي)؛ ستظهر بعد كشف الإجابة!');
       return;
     }
 
-    lbImg.src = visualImg.src;
-    lbImg.alt = visualImg.alt || 'معاينة مكبرة';
+    lbImg.src = isPreview ? previewSrc : visualImg.src;
+    lbImg.alt = (isPreview ? previewAlt : visualImg.alt) || 'معاينة مكبرة';
     // Preserve anti-spoiler blur if in progressive_clarity mode before reveal
-    lbImg.style.filter = visualImg.style.filter || 'none';
+    lbImg.style.filter = isPreview ? 'none' : (visualImg.style.filter || 'none');
     setLightboxZoom(1, true);
     if (lbCap) {
-      lbCap.textContent = '🔍 ' + (visualImg.alt || 'معاينة الصورة (اسحب أو كبّر بإصبعين)');
+      lbCap.textContent = '🔍 ' + (lbImg.alt || 'معاينة الصورة (اسحب أو كبّر بإصبعين)');
     }
     openModalLayer('modal-image-lightbox');
   }
@@ -3664,7 +3684,11 @@
         AppState.draftSelection.team1 = [];
         AppState.draftSelection.activePickerTeam = 'team1';
         persistDraftSelection();
-        updateAllVisibleCardsSelectionDOM();
+        if (AppState.statusFilter === 'selected') {
+          renderCategoriesGrid();
+        } else {
+          updateAllVisibleCardsSelectionDOM();
+        }
         renderSelectedTray();
       });
     }
@@ -3677,7 +3701,11 @@
         AppState.draftSelection.team2 = [];
         AppState.draftSelection.activePickerTeam = 'team2';
         persistDraftSelection();
-        updateAllVisibleCardsSelectionDOM();
+        if (AppState.statusFilter === 'selected') {
+          renderCategoriesGrid();
+        } else {
+          updateAllVisibleCardsSelectionDOM();
+        }
         renderSelectedTray();
       });
     }
@@ -5434,26 +5462,34 @@
   function renderHallOfFameModal() {
     var summaryEl = document.getElementById('hof-stats-summary');
     var listEl = document.getElementById('hof-records-list');
-    var stats = loadFromStorage(Engine.STORAGE_KEYS.STATS, { matchesCompleted: 0, highestScore: 0, records: [] });
-    var playedCount = Object.keys(AppState.playedHistory || {}).length;
+    var stats = AppState.globalStats || {};
+    var recs = Array.isArray(stats.records) ? stats.records : [];
+    var playedCount = DATA.questions.filter(function (q) { return !!AppState.playedHistory[q.id]; }).length;
+    var highestScore = recs.reduce(function (highest, record) { return Math.max(highest, Number(record.highestScore) || 0); }, 0);
     if (summaryEl) {
       summaryEl.innerHTML =
-        '<div class="stat-card"><div class="stat-val">' + (stats.matchesCompleted || 0) + '</div><div class="stat-lbl">مباريات مكتملة</div></div>' +
-        '<div class="stat-card"><div class="stat-val">' + (stats.highestScore || 0) + '</div><div class="stat-lbl">أعلى نقاط فريق</div></div>' +
-        '<div class="stat-card"><div class="stat-val">' + playedCount + '</div><div class="stat-lbl">أسئلة تم حسمها</div></div>' +
+        '<div class="stat-card"><div class="stat-val">' + (Number(stats.matchesPlayed) || 0) + '</div><div class="stat-lbl">مباريات مكتملة</div></div>' +
+        '<div class="stat-card"><div class="stat-val">' + highestScore + '</div><div class="stat-lbl">أعلى نقاط في النتائج المسجلة</div></div>' +
+        '<div class="stat-card"><div class="stat-val">' + playedCount + '</div><div class="stat-lbl">أسئلة محـسومة من المكتبة الحالية</div></div>' +
         '<div class="stat-card"><div class="stat-val">' + DATA.categories.length + '</div><div class="stat-lbl">إجمالي الفئات</div></div>';
     }
     if (listEl) {
-      var recs = Array.isArray(stats.records) ? stats.records : [];
+      listEl.textContent = '';
       if (recs.length === 0) {
         listEl.innerHTML = '<div style="color:var(--text-muted);">لا توجد مباريات مسجلة بعد؛ أكمل مباراة لتخليد نتيجتها في لوحة الشرف!</div>';
       } else {
-        listEl.innerHTML = recs.slice(0, 8).map(function (r, idx) {
-          return '<div style="display:flex; justify-content:space-between; padding:0.45rem 0.65rem; background:var(--bg-surface); border-radius:8px;">' +
-            '<strong>#' + (idx + 1) + ' — ' + (r.winner || 'تعادل') + '</strong>' +
-            '<span style="color:var(--accent-gold); font-weight:800;">' + (r.scoreText || '') + '</span>' +
-            '</div>';
-        }).join('');
+        recs.slice(0, 8).forEach(function (r, idx) {
+          var row = document.createElement('div');
+          row.style.cssText = 'display:flex; justify-content:space-between; padding:0.45rem 0.65rem; background:var(--bg-surface); border-radius:8px;';
+          var winner = document.createElement('strong');
+          winner.textContent = '#' + (idx + 1) + ' — ' + (r.winner || 'تعادل');
+          var score = document.createElement('span');
+          score.style.cssText = 'color:var(--accent-gold); font-weight:800;';
+          score.textContent = r.scoreText || '';
+          row.appendChild(winner);
+          row.appendChild(score);
+          listEl.appendChild(row);
+        });
       }
     }
   }

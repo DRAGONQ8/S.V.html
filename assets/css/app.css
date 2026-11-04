@@ -594,6 +594,16 @@ button:disabled {
   flex-wrap: wrap;
 }
 
+ .category-suspension-notice {
+  margin: 0;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
 .sessions-panel {
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
@@ -645,39 +655,24 @@ button:disabled {
 
 .selected-tray {
   position: sticky;
-  top: 52px;
+  top: 50px;
   z-index: 95;
   background: var(--bg-glass);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-md);
-  padding: 0.45rem 0.65rem;
-  display: flex;
+  padding: 0.35rem 0.55rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.45rem;
-  flex-wrap: wrap;
-}
-
-.tray-counter-group {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  flex-wrap: wrap;
-}
-
-.tray-counter-badge {
-  font-size: 0.76rem;
-  font-weight: 800;
-  padding: 0.2rem 0.5rem;
-  border-radius: var(--radius-full);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  gap: 0.2rem 0.5rem;
 }
 
 .team-picker-switcher {
   display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
   background: var(--bg-secondary);
   border-radius: var(--radius-sm);
   padding: 2px;
@@ -685,11 +680,13 @@ button:disabled {
 }
 
 .team-picker-btn {
+  min-height: 36px;
   padding: 0.2rem 0.5rem;
   font-size: 0.74rem;
   font-weight: 800;
   border-radius: var(--radius-xs);
   color: var(--text-secondary);
+  white-space: nowrap;
 }
 
 .team-picker-btn.active-team1 {
@@ -702,12 +699,58 @@ button:disabled {
   color: #ffffff;
 }
 
+.selected-tray > #btn-proceed-setup {
+  min-height: 38px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.tray-live-hint {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.tray-details {
+  grid-column: 1 / -1;
+  min-width: 0;
+  font-size: 0.75rem;
+}
+
+.tray-details summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-weight: 800;
+  padding: 0.1rem 0.2rem;
+}
+
+.tray-details-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  max-height: min(35vh, 230px);
+  overflow-y: auto;
+  padding-top: 0.4rem;
+}
+
+.tray-details .icon-btn {
+  min-height: 36px;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.74rem;
+}
+
 .tray-pills {
   display: flex;
   align-items: center;
   gap: 0.3rem;
   flex-wrap: wrap;
-  flex: 1 1 auto;
+  flex: 1 1 100%;
 }
 
 .tray-pill {
@@ -720,6 +763,11 @@ button:disabled {
   border: 1px solid var(--border-subtle);
   font-size: 0.74rem;
   font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .selected-tray { top: 48px; }
+  .team-picker-btn { padding-inline: 0.35rem; font-size: 0.7rem; }
 }
 
 .filter-toolbar {
@@ -2073,6 +2121,7 @@ button:disabled {
 }
 .lightbox-stage {
   flex: 1 1 auto;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2080,8 +2129,29 @@ button:disabled {
 }
 .lightbox-stage img {
   max-width: 94vw;
-  max-height: 84dvh;
+  max-height: 100%;
   object-fit: contain;
+}
+
+/* Keep every control reachable when the viewport or text size is small. */
+@media (max-width: 600px) {
+  .lightbox-topbar {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .lightbox-topbar #lightbox-caption {
+    flex: 1 1 100%;
+    max-width: 100% !important;
+  }
+  .lightbox-controls {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .lightbox-ctrl-btn {
+    min-height: 44px;
+    height: auto;
+  }
 }
 
 .cat-preview-strip {

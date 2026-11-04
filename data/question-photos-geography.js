@@ -19,11 +19,10 @@
     kw_landmarks_q16: 'kuwait_towers', kw_landmarks_q28: 'kuwait_towers',
     kw_landmarks_q29: 'kuwait_towers', who_is_landmark_q01: 'kuwait_towers'
   };
-  var towers = registry['asset:photo_gulf_kw_towers'];
   data.questions.forEach(function (question) {
     var photo = photos[question.id];
     if (!photo) return;
-    var uri = photo === 'kuwait_towers' ? (towers && towers.dataUri) :
+    var uri = photo === 'kuwait_towers' ? 'assets/images/categories/kw_landmarks.webp' :
       'assets/images/questions/geography/' + photo + '.webp';
     if (!uri) return;
     var id = 'asset:geo_question_' + question.id;

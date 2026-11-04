@@ -1576,6 +1576,57 @@
     };
   }
 
+  function getPlayableCatalog(catalog) {
+    var suspended = { waddih_shway: true, rakkiz_shway: true, spot_the_difference: true };
+    return Object.assign({}, catalog, {
+      categories: (catalog.categories || []).filter(function (c) { return !suspended[c.id]; }),
+      questions: (catalog.questions || []).filter(function (q) { return !suspended[q.categoryId]; })
+    });
+  }
+
+  function countUnseenQuestions(questions, playedHistory, exposedHistory) {
+    var played = playedHistory || {};
+    var exposed = exposedHistory || {};
+    return (questions || []).filter(function (question) {
+      return !played[question.id] && !exposed[question.id];
+    }).length;
+  }
+
+  function recordCompletedMatch(stats, match, alreadyCounted) {
+    if (!stats || !match || match.status !== 'completed' || !match.matchId || !match.teams || !match.teams.team1 || !match.teams.team2) return;
+    var team1 = match.teams.team1;
+    var team2 = match.teams.team2;
+    var score1 = Number(team1.score) || 0;
+    var score2 = Number(team2.score) || 0;
+    var records = Array.isArray(stats.records) ? stats.records : [];
+    var entry = {
+      matchId: match.matchId,
+      winner: score1 === score2 ? 'تعادل' : String(score1 > score2 ? team1.name : team2.name),
+      scoreText: score1 + ' - ' + score2,
+      highestScore: Math.max(score1, score2)
+    };
+    var index = records.findIndex(function (record) { return record.matchId === match.matchId; });
+    if (index < 0) {
+      records.unshift(entry);
+      if (!alreadyCounted) stats.matchesPlayed = (Number(stats.matchesPlayed) || 0) + 1;
+    }
+    else records[index] = entry;
+    stats.records = records;
+  }
+
+  function removeCompletedMatchRecord(stats, matchId) {
+    if (!stats || !Array.isArray(stats.records)) return;
+    var exists = stats.records.some(function (record) { return record.matchId === matchId; });
+    stats.records = stats.records.filter(function (record) { return record.matchId !== matchId; });
+    if (exists) stats.matchesPlayed = Math.max(0, (Number(stats.matchesPlayed) || 0) - 1);
+  }
+
+  function restorePlayedHistoryOnUndo(history, action) {
+    if (history && action && action.type === 'SCORE_CELL' && action.questionId && action.previouslyPlayed === false) {
+      delete history[action.questionId];
+    }
+  }
+
   return {
     SCHEMA_VERSION: SCHEMA_VERSION,
     STORAGE_KEYS: STORAGE_KEYS,
@@ -1591,6 +1642,11 @@
     sanitizeText: sanitizeText,
     sanitizeLifelineList: sanitizeLifelineList,
     validateDatabase: validateDatabase,
+    getPlayableCatalog: getPlayableCatalog,
+    countUnseenQuestions: countUnseenQuestions,
+    recordCompletedMatch: recordCompletedMatch,
+    removeCompletedMatchRecord: removeCompletedMatchRecord,
+    restorePlayedHistoryOnUndo: restorePlayedHistoryOnUndo,
     selectCategoryMatchQuestions: selectCategoryMatchQuestions,
     createMatch: createMatch,
     findCell: findCell,

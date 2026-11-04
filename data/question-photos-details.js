@@ -5,6 +5,7 @@
   if (!data || !data.questions || !data.mediaRegistry) return;
   var photos = {
     other_sports_q01: ['olympic-rings.webp', 'شعار رياضي بحلقات متداخلة'],
+    visual_puzzles_q10: ['rubin-vase.webp', 'رسم خداع بصري بالأبيض والأسود'],
     macro_object_closeup_q02: ['crystal-geode.webp', 'بلورات بنفسجية داخل تجويف صخري'],
     macro_object_closeup_q04: ['camera-lens.webp', 'صورة مقربة لجهاز بصري'],
     macro_object_closeup_q10: ['match-head.webp', 'صورة مقربة لرأس عود ثقاب'],
