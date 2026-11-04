@@ -32,7 +32,7 @@
       accent: '#0284c7',
       slots: [
         ['kw_history', 'kw_landmarks', 'kw_qirqian_occasions', 'uae_knowledge', 'saudi_arabia_knowledge', 'qatar_oman_bahrain'],
-        ['kw_culture', 'gulf_attire_oud_jewelry', 'nabati_poetry_gulf', 'gulf_folk_arts', 'gulf_oil_economy_arch'],
+        ['kw_culture', 'gulf_attire_oud_jewelry', 'gulf_folk_arts', 'gulf_oil_economy_arch'],
         ['kw_proverbs', 'kw_old_words', 'ahl_albarr', 'kw_sea_pearling'],
         ['kw_cuisine', 'ramadan_sufra', 'hala_wa_gahwa', 'kw_restaurants', 'baqala_supermarket'],
         ['kw_gulf_drama', 'kw_theater', 'kw_national_songs_operettas', 'gulf_artist_clues'],
@@ -158,7 +158,7 @@
       desc: 'تشكيلة عائلية تجمع القصص، الأكلات، الطبيعة، الاختراعات، والكوميديا',
       buildPools: function () {
         var p1 = DATA.categories.filter(function (c) { return c.groupId === 'group_b' || c.id === 'kw_cuisine' || c.id === 'ramadan_sufra' || c.id === 'hala_wa_gahwa' || c.id === 'food_cultures'; }).map(function (c) { return c.id; });
-        var p2 = DATA.categories.filter(function (c) { return c.id === 'animals_nature' || c.id === 'birds_world' || c.id === 'plants_trees' || c.id === 'inventions' || c.id === 'what_is_invention' || c.id === 'general_knowledge'; }).map(function (c) { return c.id; });
+        var p2 = DATA.categories.filter(function (c) { return c.id === 'birds_world' || c.id === 'inventions' || c.id === 'what_is_invention' || c.id === 'general_knowledge'; }).map(function (c) { return c.id; });
         var p3 = DATA.categories.filter(function (c) { return c.tvSubgroup === 'gulf' || c.id === 'tv_comedy_series' || c.id === 'disney_pixar' || c.id === 'spacetoon_classics'; }).map(function (c) { return c.id; });
         return [p1, p1, p2, p2, p3, p3];
       }
@@ -192,7 +192,7 @@
       desc: 'فئات عالية التحدي في اللغة والتاريخ والعلوم والألغاز المنطقية',
       buildPools: function () {
         var langHist = DATA.categories.filter(function (c) { return c.groupId === 'group_c' || c.groupId === 'group_d'; }).map(function (c) { return c.id; });
-        var sciTech = DATA.categories.filter(function (c) { return c.groupId === 'group_e' || c.id === 'visual_puzzles' || c.id === 'crack_the_code' || c.id === 'tv_dark' || c.id === 'tv_sherlock'; }).map(function (c) { return c.id; });
+        var sciTech = DATA.categories.filter(function (c) { return c.groupId === 'group_e' || c.id === 'visual_puzzles' || c.id === 'tv_dark' || c.id === 'tv_sherlock'; }).map(function (c) { return c.id; });
         return [langHist, langHist, langHist, sciTech, sciTech, sciTech];
       }
     },
