@@ -49,9 +49,9 @@
         ['who_is_landmark', 'famous_landmarks', 'kw_landmarks'],
         ['flags_capitals', 'club_crests', 'guess_the_logo'],
         ['waddih_shway', 'rakkiz_shway', 'spot_the_difference'],
-        ['game_screenshots_hud'],
+        ['football_stadiums'],
         ['visual_puzzles', 'macro_object_closeup', 'world_of_watches'],
-        ['player_kits', 'anime_silhouettes']
+        ['player_kits', 'who_is_the_player']
       ]
     },
     series_night: {
@@ -146,7 +146,7 @@
       title: 'سينما ونجوم',
       desc: 'أشهر المسلسلات والأفلام والشخصيات والممثلين والأدوار الفنية',
       buildPools: function () {
-        var cross = ['movies_tv', 'foreign_artist_career', 'artists_challenge', 'gulf_artist_clues', 'fannan_musalsal_masrahiya', 'tv_series_characters', 'tv_actor_and_role'].filter(function (id) { return !!CAT_BY_ID[id]; });
+        var cross = ['movies_tv', 'gulf_artist_clues', 'tv_series_characters', 'tv_actor_and_role'].filter(function (id) { return !!CAT_BY_ID[id]; });
         var shows = DATA.categories.filter(function (c) { return c.groupId === 'group_j'; }).map(function (c) { return c.id; });
         return [cross, cross, cross, shows, shows, shows];
       }
@@ -158,7 +158,7 @@
       desc: 'تشكيلة عائلية تجمع القصص، الأكلات، الطبيعة، الاختراعات، والكوميديا',
       buildPools: function () {
         var p1 = DATA.categories.filter(function (c) { return c.groupId === 'group_b' || c.id === 'kw_cuisine' || c.id === 'ramadan_sufra' || c.id === 'hala_wa_gahwa' || c.id === 'food_cultures'; }).map(function (c) { return c.id; });
-        var p2 = DATA.categories.filter(function (c) { return c.id === 'birds_world' || c.id === 'inventions' || c.id === 'what_is_invention' || c.id === 'general_knowledge'; }).map(function (c) { return c.id; });
+        var p2 = DATA.categories.filter(function (c) { return c.id === 'birds_world' || c.id === 'inventions' || c.id === 'general_knowledge'; }).map(function (c) { return c.id; });
         var p3 = DATA.categories.filter(function (c) { return c.tvSubgroup === 'gulf' || c.id === 'disney_pixar' || c.id === 'spacetoon_classics'; }).map(function (c) { return c.id; });
         return [p1, p1, p2, p2, p3, p3];
       }
@@ -890,7 +890,19 @@
     var combinedSeen = Object.assign({}, AppState.playedHistory, AppState.exposedHistory);
     var unseenCache = {};
     var categoryNumbers = {};
-    DATA.categories.forEach(function (c, index) {
+    var groupOrder = {};
+    DATA.groups.forEach(function (group, index) { groupOrder[group.id] = index; });
+    // Keep built-in category numbers consistent across devices with different custom packs.
+    var orderedCategories = DATA.categories.map(function (cat, index) {
+      return { cat: cat, index: index };
+    }).sort(function (a, b) {
+      if (!!a.cat.isCustom !== !!b.cat.isCustom) return a.cat.isCustom ? 1 : -1;
+      var aGroup = Object.prototype.hasOwnProperty.call(groupOrder, a.cat.groupId) ? groupOrder[a.cat.groupId] : DATA.groups.length;
+      var bGroup = Object.prototype.hasOwnProperty.call(groupOrder, b.cat.groupId) ? groupOrder[b.cat.groupId] : DATA.groups.length;
+      return (aGroup - bGroup) || (a.index - b.index);
+    }).map(function (item) { return item.cat; });
+
+    orderedCategories.forEach(function (c, index) {
       categoryNumbers[c.id] = index + 1;
       var qs = QUESTIONS_BY_CAT[c.id] || [];
       var u = 0;
@@ -900,7 +912,7 @@
       unseenCache[c.id] = u;
     });
 
-    var filtered = DATA.categories.filter(function (c) {
+    var filtered = orderedCategories.filter(function (c) {
       if (AppState.activeGroupFilter === 'favorites') {
         if (!AppState.favoriteCategories[c.id]) return false;
       } else if (AppState.activeGroupFilter === 'group_j') {

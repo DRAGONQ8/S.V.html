@@ -22,6 +22,18 @@ const newlyRemoved = new Set([
   'arab_novelists_modern_poets', 'mov_lord_of_the_rings', 'mov_fast_furious'
 ]);
 
+const latestRemoved = new Set([
+  'what_is_invention', 'fannan_musalsal_masrahiya', 'name_the_league',
+  'game_screenshots_hud', 'game_character_outfit', 'anime_silhouettes',
+  'young_celebrities', 'foreign_artist_career', 'apps_digital_icons', 'artists_challenge',
+  'tv_better_call_saul', 'tv_stranger_things', 'tv_the_office', 'tv_big_bang_theory',
+  'gta_open_world_games', 'marine_life_energy_env', 'ww1_ww2_history',
+  'gulf_heritage_sports', 'cinema_oscars_arabic_films', 'tv_jilbab_abi',
+  'tv_chernobyl', 'tv_alkabeer_awi', 'tv_alikhtiyar', 'tv_gaafar_elomda',
+  'tv_layali_alhelmeya', 'tv_raafat_elhaggan', 'tv_valley_of_wolves',
+  'tv_turkish_dubbed_drama', 'tv_narcos', 'tv_wednesday', 'tv_suits', 'tv_greys_anatomy'
+]);
+
 function loadData() {
   const context = { window: {} };
   const run = file => vm.runInNewContext(fs.readFileSync(path.join(root, file), 'utf8'), context, { filename: file });
@@ -36,7 +48,7 @@ function loadData() {
 
 test('requested categories, their questions and exclusive metadata are removed', () => {
   const data = loadData();
-  for (const id of [...removed, ...newlyRemoved]) {
+  for (const id of [...removed, ...newlyRemoved, ...latestRemoved]) {
     assert.ok(!data.categories.some(cat => cat.id === id), `category remains: ${id}`);
     assert.ok(!data.questions.some(q => q.categoryId === id), `questions remain: ${id}`);
     assert.ok(!data.groups.some(group => group.categoryIds.includes(id)), `group reference remains: ${id}`);
