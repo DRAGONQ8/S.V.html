@@ -35,6 +35,11 @@
     'assets/images/questions/general-knowledge/': ['rainbow'],
     'assets/images/questions/medical-history/': ['barnard', 'fleming', 'hpylori', 'koch', 'pasteur'],
     'assets/images/questions/visual-priority/': ['petronas', 'lotus2', 'aleppo', 'pineapple', 'watch-spring', 'red-fort', 'maria-theresa-thaler'],
+    'assets/images/questions/batch-food/': ['balaleet', 'breadcrust', 'cappuccino', 'chili', 'dates', 'deserttruffle', 'grouper', 'halawet', 'harees', 'machboos', 'maillard', 'mansaf', 'parmesan', 'pudding', 'tea', 'v60'],
+    'assets/images/questions/batch-history/': ['alhambra', 'berlin-wall', 'cordoba', 'dome-rock', 'ibn-tulun', 'kadesh', 'kairouan', 'mustansiriya', 'normandy', 'october', 'verdun', 'versailles'],
+    'assets/images/questions/batch-landmarks/': ['bahla-fort', 'burj-al-arab', 'heydar-aliyev-center', 'louvre-abu-dhabi', 'nizwa', 'qatar-national-museum', 'sheikh-zayed-mosque', 'souq-waqif'],
+    'assets/images/questions/batch-nature/': ['bahrain-tree', 'coffee-plant', 'cordyceps', 'crab-plover', 'date-palm', 'desert-shrub', 'desert-truffle', 'palm-civet'],
+    'assets/images/questions/batch-science/': ['antarctica', 'bab-el-mandeb', 'bering', 'gibraltar', 'hurricane', 'sinai'],
     'assets/images/questions/stadiums/': ['01', '02', '03', '04', '05', '06', '07', '08', '11', '12', '13', '14', '15', '17', '19', '20', '21', '22', '23', '24', '25', '26', '28', '29', '30', '32', '33', '34', '35', '36', '37', '38', '39'],
     'assets/images/categories/': ['ahl_albarr', 'player_career_path', 'who_is_the_player', 'combat_and_team_sports', 'fifa_world_cup', 'uefa_champions_league', 'kw_landmarks', 'umayyad_era']
   };
