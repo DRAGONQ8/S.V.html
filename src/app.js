@@ -51,7 +51,7 @@
         ['waddih_shway', 'rakkiz_shway', 'spot_the_difference'],
         ['football_stadiums'],
         ['visual_puzzles', 'macro_object_closeup', 'world_of_watches'],
-        ['player_kits', 'who_is_the_player']
+        ['who_is_the_player']
       ]
     },
     series_night: {
@@ -88,7 +88,7 @@
       buildPools: function () {
         var kw = DATA.categories.filter(function (c) { return c.groupId === 'group_a'; }).map(function (c) { return c.id; });
         var gulfTv = DATA.categories.filter(function (c) { return c.tvSubgroup === 'gulf' || c.id === 'tv_old_kuwaiti_series'; }).map(function (c) { return c.id; });
-        var nost = ['spacetoon_classics', 'old_cartoons_babay', 'classic_anime', 'retro_gaming', 'baqala_supermarket'].filter(function (id) { return !!CAT_BY_ID[id]; });
+        var nost = ['spacetoon_classics', 'old_cartoons_babay', 'classic_anime', 'baqala_supermarket'].filter(function (id) { return !!CAT_BY_ID[id]; });
         return [kw, kw, gulfTv, gulfTv, nost, nost];
       }
     },
