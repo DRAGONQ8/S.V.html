@@ -59,5 +59,5 @@ test('every mapped photo is bundled with a WebP header and source and license in
     assert.match(cover.sourcePageUrl, /^https:\/\/commons\.wikimedia\.org\//);
     assert.ok(cover.author && cover.license && cover.licenseUrl, cat.id);
   }
-  assert.ok(mapped >= 300, `Only ${mapped} categories have downloaded photos`);
+  assert.ok(mapped >= Math.ceil(categories.length * 0.98), `Only ${mapped} of ${categories.length} categories have downloaded photos`);
 });

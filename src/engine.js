@@ -1293,7 +1293,7 @@
     };
   }
 
-  function validateImportedMatchState(payload) {
+  function validateImportedMatchState(payload, availableCategories) {
     if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
       return { valid: false, error: 'ملف البيانات غير صالح.' };
     }
@@ -1389,6 +1389,9 @@
       var col = match.columns[i];
       if (!col || typeof col !== 'object' || !col.categoryId || typeof col.categoryId !== 'string') {
         return { valid: false, error: 'بيانات عمود الفئة رقم ' + (i + 1) + ' غير صالحة.' };
+      }
+      if (availableCategories && !Object.prototype.hasOwnProperty.call(availableCategories, col.categoryId)) {
+        return { valid: false, error: 'تحتوي المباراة على فئة لم تعد متاحة: ' + col.title };
       }
       if (seenCategoryIds[col.categoryId]) {
         return { valid: false, error: 'تكرار غير صالح للفئة: ' + col.categoryId };

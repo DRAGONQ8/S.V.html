@@ -11,7 +11,7 @@
 
   var TEAM_COLORS = Engine.VALID_TEAM_COLORS;
 
-  // Pre-index categories and questions once for O(1) lookups across 120 categories & 4,800 questions
+  // Pre-index categories and questions once for O(1) lookups.
   var CAT_BY_ID = {};
   var QUESTIONS_BY_CAT = {};
   (DATA.categories || []).forEach(function (c) {
@@ -31,12 +31,12 @@
       icon: '🇰🇼',
       accent: '#0284c7',
       slots: [
-        ['kw_history', 'kw_landmarks', 'kw_qirqian_occasions', 'uae_knowledge', 'saudi_arabia_knowledge', 'qatar_oman_bahrain'],
+        ['kw_history', 'kw_landmarks', 'kw_qirqian_occasions'],
         ['kw_culture', 'gulf_attire_oud_jewelry', 'gulf_folk_arts', 'gulf_oil_economy_arch'],
         ['kw_proverbs', 'kw_old_words', 'ahl_albarr', 'kw_sea_pearling'],
         ['kw_cuisine', 'ramadan_sufra', 'hala_wa_gahwa', 'kw_restaurants', 'baqala_supermarket'],
         ['kw_gulf_drama', 'kw_theater', 'kw_national_songs_operettas', 'gulf_artist_clues'],
-        ['gcc_countries', 'gulf_cities', 'kw_brand_logos', 'bahrain_gulf_logos']
+        ['gulf_cities', 'kw_brand_logos', 'bahrain_gulf_logos']
       ]
     },
     visual_night: {
@@ -88,7 +88,7 @@
       buildPools: function () {
         var kw = DATA.categories.filter(function (c) { return c.groupId === 'group_a'; }).map(function (c) { return c.id; });
         var gulfTv = DATA.categories.filter(function (c) { return c.tvSubgroup === 'gulf' || c.id === 'tv_old_kuwaiti_series'; }).map(function (c) { return c.id; });
-        var nost = ['spacetoon_classics', 'old_cartoons_babay', 'classic_anime', 'retro_gaming', 'baqala_supermarket', 'kw_old_ads_tv', 'vintage_tools'].filter(function (id) { return !!CAT_BY_ID[id]; });
+        var nost = ['spacetoon_classics', 'old_cartoons_babay', 'classic_anime', 'retro_gaming', 'baqala_supermarket'].filter(function (id) { return !!CAT_BY_ID[id]; });
         return [kw, kw, gulfTv, gulfTv, nost, nost];
       }
     },
@@ -422,6 +422,8 @@
   }
 
   function initApp() {
+    // Custom categories must be available before restoring a saved match.
+    loadAndMergeCustomPacks();
     var savedSettings = loadFromStorage(Engine.STORAGE_KEYS.SETTINGS, null);
     if (savedSettings && typeof savedSettings === 'object') {
       AppState.settings = Object.assign({}, Engine.DEFAULT_SETTINGS, savedSettings);
@@ -472,11 +474,13 @@
 
     var savedMatch = loadFromStorage(Engine.STORAGE_KEYS.ACTIVE_MATCH, null);
     if (savedMatch) {
-      var check = Engine.validateImportedMatchState(savedMatch);
+      var check = Engine.validateImportedMatchState(savedMatch, CAT_BY_ID);
       if (check.valid) {
         AppState.activeMatch = check.matchState;
         Object.assign(AppState.playedHistory, check.playedHistory);
         Object.assign(AppState.exposedHistory, check.exposedHistory);
+      } else {
+        showToast('تعذرت استعادة المباراة المحفوظة: ' + check.error);
       }
     }
 
@@ -763,7 +767,7 @@
     // Also sync status filter buttons
     var statusContainer = document.getElementById('category-status-filters');
     if (statusContainer) {
-      var favCount = Object.keys(AppState.favoriteCategories || {}).filter(function (k) { return AppState.favoriteCategories[k]; }).length;
+      var favCount = Object.keys(AppState.favoriteCategories || {}).filter(function (k) { return AppState.favoriteCategories[k] && !!CAT_BY_ID[k]; }).length;
       var selCount = AppState.selectedCategories.length;
       var btns = statusContainer.querySelectorAll('[data-status-filter]');
       for (var i = 0; i < btns.length; i++) {
@@ -3427,7 +3431,7 @@
     reader.onload = function (evt) {
       try {
         var parsed = JSON.parse(evt.target.result);
-        var check = Engine.validateImportedMatchState(parsed);
+        var check = Engine.validateImportedMatchState(parsed, CAT_BY_ID);
         if (!check.valid) {
           showToast('خطأ في استيراد الملف: ' + check.error);
           return;
