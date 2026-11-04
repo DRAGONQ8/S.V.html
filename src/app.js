@@ -27,15 +27,15 @@
     gulf_night: {
       key: 'gulf_night',
       title: '🇰🇼 سهرة خليجية وكويتية',
-      subtitle: 'تراث الكويت والخليج، الأمثال، الأكلات، القرقيعان، والفنون الشعبية',
+      subtitle: 'تراث الكويت والخليج، الأمثال، الأكلات، والقرقيعان',
       icon: '🇰🇼',
       accent: '#0284c7',
       slots: [
         ['kw_history', 'kw_landmarks', 'kw_qirqian_occasions'],
-        ['kw_culture', 'gulf_attire_oud_jewelry', 'gulf_folk_arts', 'gulf_oil_economy_arch'],
+        ['kw_culture', 'gulf_attire_oud_jewelry', 'gulf_oil_economy_arch'],
         ['kw_proverbs', 'kw_old_words', 'ahl_albarr', 'kw_sea_pearling'],
         ['kw_cuisine', 'ramadan_sufra', 'hala_wa_gahwa', 'kw_restaurants', 'baqala_supermarket'],
-        ['kw_gulf_drama', 'kw_theater', 'kw_national_songs_operettas', 'gulf_artist_clues'],
+        ['kw_gulf_drama', 'kw_theater', 'gulf_artist_clues'],
         ['gulf_cities', 'kw_brand_logos', 'bahrain_gulf_logos']
       ]
     },
@@ -49,9 +49,9 @@
         ['who_is_landmark', 'famous_landmarks', 'kw_landmarks'],
         ['flags_capitals', 'club_crests', 'guess_the_logo'],
         ['waddih_shway', 'rakkiz_shway', 'spot_the_difference'],
-        ['tv_guess_from_scene', 'tv_place_and_series', 'game_screenshots_hud'],
+        ['game_screenshots_hud'],
         ['visual_puzzles', 'macro_object_closeup', 'world_of_watches'],
-        ['where_is_the_ball', 'player_kits', 'anime_silhouettes']
+        ['player_kits', 'anime_silhouettes']
       ]
     },
     series_night: {
@@ -100,7 +100,7 @@
       buildPools: function () {
         var vis = DATA.categories.filter(function (c) {
           var qs = QUESTIONS_BY_CAT[c.id] || [];
-          return c.id === 'tv_guess_from_scene' || c.id === 'tv_place_and_series' || c.groupId === 'group_i' ||
+          return c.groupId === 'group_i' ||
             qs.filter(function (q) { return !!(q.assetId || q.imageDataUri); }).length >= 8;
         }).map(function (c) { return c.id; });
         return [vis, vis, vis, vis, vis, vis];
@@ -146,7 +146,7 @@
       title: 'سينما ونجوم',
       desc: 'أشهر المسلسلات والأفلام والشخصيات والممثلين والأدوار الفنية',
       buildPools: function () {
-        var cross = ['movies_tv', 'foreign_artist_career', 'artists_challenge', 'gulf_artist_clues', 'fannan_musalsal_masrahiya', 'tv_guess_from_scene', 'tv_series_characters', 'tv_actor_and_role', 'tv_place_and_series', 'tv_comedy_series'].filter(function (id) { return !!CAT_BY_ID[id]; });
+        var cross = ['movies_tv', 'foreign_artist_career', 'artists_challenge', 'gulf_artist_clues', 'fannan_musalsal_masrahiya', 'tv_series_characters', 'tv_actor_and_role'].filter(function (id) { return !!CAT_BY_ID[id]; });
         var shows = DATA.categories.filter(function (c) { return c.groupId === 'group_j'; }).map(function (c) { return c.id; });
         return [cross, cross, cross, shows, shows, shows];
       }
@@ -159,7 +159,7 @@
       buildPools: function () {
         var p1 = DATA.categories.filter(function (c) { return c.groupId === 'group_b' || c.id === 'kw_cuisine' || c.id === 'ramadan_sufra' || c.id === 'hala_wa_gahwa' || c.id === 'food_cultures'; }).map(function (c) { return c.id; });
         var p2 = DATA.categories.filter(function (c) { return c.id === 'birds_world' || c.id === 'inventions' || c.id === 'what_is_invention' || c.id === 'general_knowledge'; }).map(function (c) { return c.id; });
-        var p3 = DATA.categories.filter(function (c) { return c.tvSubgroup === 'gulf' || c.id === 'tv_comedy_series' || c.id === 'disney_pixar' || c.id === 'spacetoon_classics'; }).map(function (c) { return c.id; });
+        var p3 = DATA.categories.filter(function (c) { return c.tvSubgroup === 'gulf' || c.id === 'disney_pixar' || c.id === 'spacetoon_classics'; }).map(function (c) { return c.id; });
         return [p1, p1, p2, p2, p3, p3];
       }
     },
@@ -889,7 +889,9 @@
 
     var combinedSeen = Object.assign({}, AppState.playedHistory, AppState.exposedHistory);
     var unseenCache = {};
-    DATA.categories.forEach(function (c) {
+    var categoryNumbers = {};
+    DATA.categories.forEach(function (c, index) {
+      categoryNumbers[c.id] = index + 1;
       var qs = QUESTIONS_BY_CAT[c.id] || [];
       var u = 0;
       for (var i = 0; i < qs.length; i++) {
@@ -1042,6 +1044,12 @@
 
       var titleRow = document.createElement('div');
       titleRow.className = 'cat-card-title-row';
+
+      var numberSpan = document.createElement('span');
+      numberSpan.className = 'cat-card-number';
+      numberSpan.textContent = '#' + categoryNumbers[cat.id];
+      numberSpan.setAttribute('aria-label', 'رقم الفئة ' + categoryNumbers[cat.id]);
+      titleRow.appendChild(numberSpan);
 
       var iconSpan = document.createElement('span');
       iconSpan.className = 'cat-card-icon';

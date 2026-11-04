@@ -13,6 +13,15 @@ const removed = new Set([
   'gcc_countries'
 ]);
 
+const newlyRemoved = new Set([
+  'national_teams', 'world_currencies', 'world_literature', 'arabic_word_meanings',
+  'arabic_libraries_books', 'player_hairstyle', 'where_is_the_ball', 'laib_nadi_mudarrib',
+  'sequence_order', 'jamad_nabat_insan', 'word_reveal_grid', 'tv_guess_from_scene',
+  'tv_place_and_series', 'tv_comedy_series', 'kw_national_songs_operettas',
+  'arabic_calligraphy_proverbs', 'gulf_folk_arts', 'arabic_synonyms_antonyms',
+  'arab_novelists_modern_poets', 'mov_lord_of_the_rings', 'mov_fast_furious'
+]);
+
 function loadData() {
   const context = { window: {} };
   const run = file => vm.runInNewContext(fs.readFileSync(path.join(root, file), 'utf8'), context, { filename: file });
@@ -27,7 +36,7 @@ function loadData() {
 
 test('requested categories, their questions and exclusive metadata are removed', () => {
   const data = loadData();
-  for (const id of removed) {
+  for (const id of [...removed, ...newlyRemoved]) {
     assert.ok(!data.categories.some(cat => cat.id === id), `category remains: ${id}`);
     assert.ok(!data.questions.some(q => q.categoryId === id), `questions remain: ${id}`);
     assert.ok(!data.groups.some(group => group.categoryIds.includes(id)), `group reference remains: ${id}`);

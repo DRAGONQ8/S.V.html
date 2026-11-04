@@ -916,6 +916,18 @@ button:disabled {
   gap: 0.25rem;
 }
 
+.cat-card-number {
+  direction: ltr;
+  flex: 0 0 auto;
+  padding: 0.08rem 0.25rem;
+  border-radius: var(--radius-xs);
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
 .cat-card-icon {
   font-size: 0.9rem;
   line-height: 1.25;
