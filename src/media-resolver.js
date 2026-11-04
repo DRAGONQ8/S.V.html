@@ -34,6 +34,7 @@
     'assets/images/questions/kuwait-heritage/': ['harbour', 'heritage-dhow', 'mubarakiya', 'oil-export'],
     'assets/images/questions/general-knowledge/': ['rainbow'],
     'assets/images/questions/medical-history/': ['barnard', 'fleming', 'hpylori', 'koch', 'pasteur'],
+    'assets/images/questions/visual-priority/': ['petronas', 'lotus2', 'aleppo', 'pineapple', 'watch-spring', 'red-fort', 'maria-theresa-thaler'],
     'assets/images/questions/stadiums/': ['01', '02', '03', '04', '05', '06', '07', '08', '11', '12', '13', '14', '15', '17', '19', '20', '21', '22', '23', '24', '25', '26', '28', '29', '30', '32', '33', '34', '35', '36', '37', '38', '39'],
     'assets/images/categories/': ['ahl_albarr', 'player_career_path', 'who_is_the_player', 'combat_and_team_sports', 'fifa_world_cup', 'uefa_champions_league', 'kw_landmarks', 'umayyad_era']
   };
@@ -55,6 +56,7 @@
     var registry = window.SEEN_JEEM_DATA && window.SEEN_JEEM_DATA.mediaRegistry || {};
     var uri = registry[ref] && registry[ref].dataUri || '';
     return isRealQuestionPhoto(question) ||
+      /^assets\/images\/questions\/country-maps\/(?:kwt|ita|sau|egy|qat|bhr|chl|aus|jpn|fra|bra|ind|can|are|omn|dza|tur|jor|esp|lka|mdg|zaf|nor|nzl|som|npl|uzb|gmb|nam|afg|hrv|aze|cze|mys|pan|cod|mng|ltu|png)\.webp$/.test(uri) ||
       uri === 'assets/images/questions/details/olympic-rings.webp' ||
       uri === 'assets/images/questions/details/rubin-vase.webp' ||
       ((question.format === 'progressive_clarity' || question.format === 'memory_observation') && !!ref) ||

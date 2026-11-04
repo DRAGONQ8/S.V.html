@@ -13,3 +13,5 @@
 مصادر صور الأسئلة الإضافية وتراخيصها موثّقة في ملفات الإسناد داخل مجلدات الصور، وفي [مصادر صور الكويت](data/question-photos-kuwait-sources.md)، و[المعالم العالمية](data/question-photos-landmarks-extra-sources.md)، و[الحضارات القديمة](data/question-photos-ancient-civs-sources.md).
 
 تتوفر أيضاً مصادر الصور الجديدة في ملفات إسناد [ملاعب كرة القدم](assets/images/questions/stadiums/ATTRIBUTION.md)، و[العواصم العربية](assets/images/questions/arab-capitals/ATTRIBUTION.md)، و[المدن الخليجية](assets/images/questions/gulf-cities/ATTRIBUTION.md)، و[التراث الكويتي](assets/images/questions/kuwait-heritage/ATTRIBUTION.md)، و[المعلومات العامة](assets/images/questions/general-knowledge/ATTRIBUTION.md)، و[تاريخ الطب](assets/images/questions/medical-history/ATTRIBUTION.md).
+
+مصادر [الصور الإضافية للأسئلة](assets/images/questions/visual-priority/ATTRIBUTION.md) و[خرائط الدول](assets/images/questions/country-maps/ATTRIBUTION.md) موثقة محلياً. الخرائط رسوم جغرافية وليست صوراً فوتوغرافية؛ وتوضح [مراجعة فرص الصور](docs/visual-audit-2026-11-04.md) نطاق التدقيق والفرص المتبقية.
