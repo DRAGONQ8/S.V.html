@@ -4,4 +4,6 @@
 
 صور الفئات محفوظة داخل `assets/images/categories` لتظهر دون الحاجة إلى الإنترنت. معلومات مصادر الصور وأصحابها وتراخيصها موجودة في [ملف إسناد الصور](assets/images/ATTRIBUTION.md). الفئات التي لم تتوفر لها صورة مناسبة تحتفظ بغلافها الأصلي.
 
-للتحقق من ربط الصور شغّل `node --test tests/category-photos.test.cjs`.
+تُخزّن صور الأسئلة المضافة محلياً أيضاً، وتُحمّل عند الحاجة. توجد مصادرها وتراخيصها في [صور المعالم](data/question-photos-geography-sources.md)، و[صور العلوم](assets/images/QUESTION-PHOTOS-SCIENCE.md)، و[صور التفاصيل](assets/images/questions/details/ATTRIBUTION.md). بعض صور الأسئلة تعيد استخدام صور الفئات أو الصور المدمجة السابقة.
+
+للتحقق من ربط الصور وبقية وظائف المشروع، شغّل `node --test tests/*.test.cjs`.

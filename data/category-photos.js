@@ -4,6 +4,8 @@
   var registry = window.SEEN_JEEM_DATA && window.SEEN_JEEM_DATA.mediaRegistry;
   if (!registry) return;
   var photos = {
+    "black_clover": ["https://commons.wikimedia.org/wiki/File:Black_Clover_Logo.png", "Yūki Tabata / Shueisha / TV Tokyo / Black Clover Project", "Public domain (text logo; trademark)", "https://commons.wikimedia.org/wiki/File:Black_Clover_Logo.png"],
+    "ani_dr_stone": ["https://commons.wikimedia.org/wiki/File:Flag_of_Kingdom_of_Science.svg", "Boichi (original work)", "Public domain (text logo; trademark)", "https://commons.wikimedia.org/wiki/File:Flag_of_Kingdom_of_Science.svg"],
     "kw_history": ["https://commons.wikimedia.org/wiki/File:Amir_Sheikh_Ahmad_Al-Jaber_Al-Sabah_turns_the_silver_wheel_to_officially_begin_exporting_the_first_Kuwaiti_oil_shipment_-_30th_of_June_1946.jpg", "Kuwait Oil Company", "Public domain", "https://commons.wikimedia.org/wiki/File:Amir_Sheikh_Ahmad_Al-Jaber_Al-Sabah_turns_the_silver_wheel_to_officially_begin_exporting_the_first_Kuwaiti_oil_shipment_-_30th_of_June_1946.jpg"],
     "kw_culture": ["https://commons.wikimedia.org/wiki/File:Kuwait_City_Arabian_Gulf_Street_Dhow_2.jpg", "Zairon", "CC BY 4.0", "https://creativecommons.org/licenses/by/4.0"],
     "arab_capitals": ["https://commons.wikimedia.org/wiki/File:Cairo_skyline,_Nile_River,_Egypt.jpg", "© Vyacheslav Argenberg", "CC BY 4.0", "https://creativecommons.org/licenses/by/4.0"],
