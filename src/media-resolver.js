@@ -55,12 +55,21 @@
       });
     });
   }
+  function isLocalQuestionImage(uri) {
+    return typeof uri === 'string' && /^assets\/images\/questions\//.test(uri) &&
+      /\.(?:webp|png|jpe?g|gif|svg)$/i.test(uri) && !/[\\?#%:\x00-\x1f]/.test(uri) &&
+      uri.split('/').every(function (part) { return part && part !== '.' && part !== '..'; });
+  }
   function shouldDisplayQuestionImage(question) {
     if (!question) return false;
     var ref = question.assetId || question.imageDataUri || question.image || '';
     var registry = window.SEEN_JEEM_DATA && window.SEEN_JEEM_DATA.mediaRegistry || {};
-    var uri = registry[ref] && registry[ref].dataUri || '';
+    var entry = registry[ref];
+    var uri = entry && entry.dataUri || '';
     return isRealQuestionPhoto(question) ||
+      // New local question images should not require changing the curated-photo
+      // counter above. Legacy embedded artwork remains hidden by default.
+      ((!entry || entry.kind === 'question_media') && isLocalQuestionImage(entry ? uri : ref)) ||
       /^assets\/images\/questions\/country-maps\/(?:kwt|ita|sau|egy|qat|bhr|chl|aus|jpn|fra|bra|ind|can|are|omn|dza|tur|jor|esp|lka|mdg|zaf|nor|nzl|som|npl|uzb|gmb|nam|afg|hrv|aze|cze|mys|pan|cod|mng|ltu|png)\.webp$/.test(uri) ||
       uri === 'assets/images/questions/details/olympic-rings.webp' ||
       uri === 'assets/images/questions/details/rubin-vase.webp' ||

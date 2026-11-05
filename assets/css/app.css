@@ -2345,3 +2345,86 @@ button:disabled {
   }
 }
 
+
+/* Keep mobile navigation and question controls legible without clipping. */
+@media (max-width: 640px) {
+  .nav-actions .nav-keep-xs .btn-lbl {
+    display: none;
+  }
+
+  .nav-actions .nav-keep-xs {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+  }
+
+  #modal-question .q-modal-header {
+    flex-wrap: wrap;
+  }
+
+  #modal-question .q-meta-badges {
+    flex: 1 1 0;
+  }
+
+  #modal-question .q-modal-header > div:last-child {
+    flex: 1 0 100%;
+    flex-wrap: wrap;
+  }
+
+  #modal-question .q-modal-header > div:last-child .icon-btn {
+    flex: 1 1 auto;
+    min-height: 40px;
+  }
+
+  #modal-question .smart-answer-input {
+    min-width: 0;
+  }
+
+  #modal-question .lifeline-btn,
+  #modal-question .steal-btn {
+    min-height: 40px;
+  }
+
+  #modal-question #btn-reveal-answer {
+    flex-basis: 100%;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 360px) {
+  #modal-question .smart-answer-row {
+    flex-wrap: wrap;
+  }
+  #modal-question .smart-answer-input {
+    flex-basis: 100%;
+    min-height: 40px;
+  }
+}
+
+/* Keep the sticky header clear when the browser scrolls a board cell into view. */
+html {
+  scroll-padding-block-start: calc(var(--navbar-height, 50px) + 0.75rem);
+}
+.board-cell-btn {
+  scroll-margin-block-start: calc(var(--navbar-height, 50px) + 0.75rem);
+}
+
+/* Browsers may retain the previous image while the next one is loading. */
+.q-visual-frame.is-loading {
+  position: relative;
+}
+.q-visual-frame.is-loading img {
+  visibility: hidden !important;
+}
+.q-visual-frame.is-loading::after {
+  content: 'جارٍ تحميل الصورة… إذا طال الانتظار، أغلق السؤال وافتحه مجدداً.';
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+}

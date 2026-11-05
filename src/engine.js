@@ -130,6 +130,13 @@
     return fallback || '#0ea5e9';
   }
 
+  function isLocalImagePath(uri) {
+    return /^assets\/images\//.test(uri) && /\.(?:webp|png|jpe?g|gif|svg)$/i.test(uri) &&
+      !/[\\?#%:\x00-\x1f]/.test(uri) && uri.split('/').every(function (part) {
+        return part && part !== '.' && part !== '..';
+      });
+  }
+
   function sanitizeImageUri(uri) {
     if (!uri || typeof uri !== 'string') return '';
     var trimmed = uri.trim();
@@ -138,8 +145,10 @@
         trimmed.indexOf('data:image/webp') === 0 ||
         trimmed.indexOf('data:image/png') === 0 ||
         trimmed.indexOf('data:image/jpeg') === 0 ||
+        trimmed.indexOf('data:image/gif') === 0 ||
         trimmed.indexOf('data:image/svg+xml') === 0 ||
-        trimmed.indexOf('src/assets/') === 0) {
+        trimmed.indexOf('src/assets/') === 0 ||
+        isLocalImagePath(trimmed)) {
       return trimmed;
     }
     return '';

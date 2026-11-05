@@ -389,6 +389,7 @@
 
     if (targetId === 'modal-question') {
       clearQuestionTimerInterval();
+      clearQuestionImage();
       if (AppState.activeMatch && AppState.activeQuestionModal.cellId) {
         var cell = Engine.findCell(AppState.activeMatch, AppState.activeQuestionModal.cellId);
         if (cell && cell.status === 'answering') {
@@ -425,6 +426,7 @@
 
   function closeAllModals() {
     clearQuestionTimerInterval();
+    clearQuestionImage();
     AppState.activeQuestionModal.isOpen = false;
     AppState.modalStack = [];
     var modals = document.querySelectorAll('.modal-backdrop');
@@ -2285,11 +2287,81 @@
     AppState.activeQuestionModal.cellId = cellId;
     AppState.activeQuestionModal.lastAnnouncedSec = null;
 
+    var questionImage = document.getElementById('q-modal-visual-img');
+    if (questionImage && (questionImage.getAttribute('data-image-failed') === 'true' ||
+        (questionImage.getAttribute('data-requested-src') &&
+         questionImage.getAttribute('data-loaded-src') !== questionImage.getAttribute('data-requested-src') &&
+         !questionImage.hasAttribute('data-vfs-loading')))) {
+      questionImage.removeAttribute('data-requested-src');
+      questionImage.removeAttribute('data-image-failed');
+    }
+
     AudioFX.playOpenQuestion();
     renderQuestionModalState();
     startQuestionTimerLoop();
     openModalLayer('modal-question');
     renderGameBoard();
+  }
+
+  function clearQuestionImage() {
+    var img = document.getElementById('q-modal-visual-img');
+    if (!img) return;
+    if (img._stopQuestionImageWatch) img._stopQuestionImageWatch();
+    img.onload = null;
+    img.onerror = null;
+    img.removeAttribute('data-requested-src');
+    img.removeAttribute('data-loaded-src');
+    img.removeAttribute('data-image-failed');
+    // Also invalidates a deferred resource assignment in older ZIP launchers.
+    img.removeAttribute('src');
+  }
+
+  // Older ZIP launchers can finish an extraction request without dispatching
+  // an image error. Watch their loading marker and retry only a silent failure.
+  function requestQuestionImage(img, frame, wrapper, src) {
+    if (img._stopQuestionImageWatch) img._stopQuestionImageWatch();
+    img.removeAttribute('src');
+    var observer = null;
+    var timer = null;
+    var attempts = 0;
+    var previousSrc = null;
+    var stopped = false;
+    function stop() {
+      stopped = true;
+      if (observer) observer.disconnect();
+      if (timer) clearTimeout(timer);
+      img._stopQuestionImageWatch = null;
+    }
+    img._stopQuestionImageWatch = stop;
+    function attempt() {
+      if (stopped) return;
+      attempts++;
+      previousSrc = img.getAttribute('src');
+      img.src = src;
+    }
+    if (typeof MutationObserver !== 'undefined') {
+      observer = new MutationObserver(function (changes) {
+        if (stopped || img.hasAttribute('data-vfs-loading') ||
+            !changes.some(function (change) { return change.oldValue !== null; })) return;
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(function () {
+          if (stopped || img.getAttribute('data-requested-src') !== src ||
+              img.hasAttribute('data-vfs-loading') || img.getAttribute('src') !== previousSrc ||
+              img.getAttribute('data-loaded-src') === src) return;
+          if (attempts < 3) {
+            attempt();
+          } else {
+            stop();
+            img.setAttribute('data-image-failed', 'true');
+            if (frame) frame.classList.remove('is-loading');
+            wrapper.classList.remove('visible');
+            showToast('تعذر تحميل الصورة. أغلق السؤال وافتحه للمحاولة مجدداً.');
+          }
+        }, 300);
+      });
+      observer.observe(img, { attributes: true, attributeOldValue: true, attributeFilter: ['data-vfs-loading'] });
+    }
+    attempt();
   }
 
   function renderQuestionModalState() {
@@ -2367,19 +2439,32 @@
           visualFrame.classList.add('is-loading');
         }
         visualImg.onload = function () {
+          if (visualImg.getAttribute('data-requested-src') !== qImgSrc || visualImg.hasAttribute('data-vfs-loading') ||
+              !visualImg.getAttribute('src') || !visualImg.naturalWidth) return;
+          if (visualImg._stopQuestionImageWatch) visualImg._stopQuestionImageWatch();
           if (visualFrame) visualFrame.classList.remove('is-loading');
           visualImg.setAttribute('data-loaded-src', qImgSrc);
+          visualImg.removeAttribute('data-image-failed');
         };
         visualImg.onerror = function () {
+          if (visualImg.getAttribute('data-requested-src') !== qImgSrc || visualImg.hasAttribute('data-vfs-loading') ||
+              !visualImg.getAttribute('src')) return;
+          if (visualImg._stopQuestionImageWatch) visualImg._stopQuestionImageWatch();
           if (visualFrame) visualFrame.classList.remove('is-loading');
+          visualImg.setAttribute('data-image-failed', 'true');
           visualWrapper.classList.remove('visible');
         };
         visualImg.decoding = 'async';
-        visualImg.src = qImgSrc;
+        // Re-rendering the question must not restart an in-flight image request.
+        if (visualImg.getAttribute('data-requested-src') !== qImgSrc) {
+          visualImg.removeAttribute('data-image-failed');
+          visualImg.setAttribute('data-requested-src', qImgSrc);
+          requestQuestionImage(visualImg, visualFrame, visualWrapper, qImgSrc);
+        }
         visualImg.alt = s.isRevealed
           ? (q.imageRevealCaption || q.imageAlt || 'رسم توضيحي للسؤال')
           : (q.imageAlt || 'رسم توضيحي للسؤال');
-        visualWrapper.classList.add('visible');
+        visualWrapper.classList.toggle('visible', visualImg.getAttribute('data-image-failed') !== 'true');
         if (revealCapEl) {
           if (s.isRevealed && (q.imageRevealCaption || q.answer)) {
             revealCapEl.textContent = '✨ اللوحة الكاملة بعد الكشف: ' + (q.imageRevealCaption || q.answer);
@@ -2390,30 +2475,11 @@
           }
         }
       } else {
+        clearQuestionImage();
         visualWrapper.classList.remove('visible');
         if (revealCapEl) revealCapEl.classList.remove('visible');
       }
     }
-    // Preload next unopened question image on the board
-    try {
-      if (match && Array.isArray(match.columns)) {
-        for (var pc = 0; pc < match.columns.length; pc++) {
-          var pCol = match.columns[pc];
-          var nextCell = pCol.cells.find(function (cl) { return !cl.answered && cl.cellId !== cellId; });
-          if (nextCell && match.questionsByCell[nextCell.cellId]) {
-            var nq = match.questionsByCell[nextCell.cellId];
-            var nSrc = window.SeenJeemMedia.shouldDisplayQuestionImage(nq) ? resolveImg(nq.assetId || nq.imageDataUri || nq.image) : '';
-            if (nSrc) {
-              var preImg = new Image();
-              preImg.decoding = 'async';
-              preImg.src = nSrc;
-              break;
-            }
-          }
-        }
-      }
-    } catch (e) {}
-
     if (promptBox) promptBox.textContent = q.question;
 
     if (guideBanner) {
@@ -3325,7 +3391,13 @@
     var lbImg = document.getElementById('lightbox-img');
     var lbCap = document.getElementById('lightbox-caption');
     var isPreview = typeof previewSrc === 'string' && !!previewSrc;
-    if (!lbImg || (!isPreview && (!visualImg || !visualImg.src))) return;
+    if (!lbImg || (!isPreview && !visualImg)) return;
+    if (!isPreview && (!visualImg.complete || !visualImg.naturalWidth ||
+        !visualImg.getAttribute('data-requested-src') ||
+        visualImg.getAttribute('data-loaded-src') !== visualImg.getAttribute('data-requested-src'))) {
+      showToast('الصورة لا تزال قيد التحميل، حاول تكبيرها بعد ظهورها.');
+      return;
+    }
     if (!isPreview && visualImg.style.visibility === 'hidden') {
       showToast('الصورة مخفية حالياً في تحدي الذاكرة (ركز شوي)؛ ستظهر بعد كشف الإجابة!');
       return;
